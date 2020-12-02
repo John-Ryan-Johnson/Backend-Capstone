@@ -40,7 +40,7 @@ namespace Supers_Choice.Data
             var employees = db.Query<Employee>("select * from employees");
 
             return employees.ToList();
-        }
+      
 
         public Employee GetById(int employeeId)
         {
