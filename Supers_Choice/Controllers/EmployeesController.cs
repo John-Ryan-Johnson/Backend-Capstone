@@ -15,9 +15,9 @@ namespace Supers_Choice.Controllers
     {
         EmployeeRepository _repo;
 
-        public EmployeesController()
+        public EmployeesController(EmployeeRepository repo)
         {
-            _repo = new EmployeeRepository();
+            _repo = repo;
         }
 
         [HttpPost]
