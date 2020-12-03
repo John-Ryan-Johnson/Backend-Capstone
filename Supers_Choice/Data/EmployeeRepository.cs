@@ -4,15 +4,18 @@ using System.Linq;
 using System.Threading.Tasks;
 using Dapper;
 using Microsoft.Data.SqlClient;
+using Microsoft.Extensions.Configuration;
 using Supers_Choice.Models;
 
 namespace Supers_Choice.Data
 {
     public class EmployeeRepository
     {
-        static List<Employee> _employees = new List<Employee>();
-
-        const string _connectionString = "Server=localhost;Database=SupersChoice;Trusted_Connection=True;";
+        readonly string _connectionString;
+        public EmployeeRepository(IConfiguration configuration)
+        {
+            _connectionString = configuration.GetConnectionString("SupersChoice");
+        }
 
         public void Add(Employee employeeToAdd)
         {
@@ -48,9 +51,9 @@ namespace Supers_Choice.Data
 
             var query = @"select *
                           from Employees
-                          where id = @cid";
+                          where id = @eid";
 
-            var parameters = new { cid = employeeId };
+            var parameters = new { eid = employeeId };
 
             var employee = db.QueryFirstOrDefault<Employee>(query, parameters);
 
