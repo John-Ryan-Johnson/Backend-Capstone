@@ -1,6 +1,7 @@
 import firebase from 'firebase/app';
 import 'firebase/auth';
 import React from 'react';
+import { BrowserRouter, Route, Redirect, Switch } from 'react-router-dom';
 import './App.scss';
 
 import fbConnection from '../helpers/data/connection';
@@ -35,11 +36,31 @@ class App extends React.Component {
   }
 
   render() {
-
+    const { authed } = this.state;
 
     return (
       <div className="App">
-        <h1>App</h1>
+        <BrowserRouter>
+          <React.Fragment>
+            <MyNavbar authed={authed} />
+            <div className="container d-flex justify-content-center">
+              <Switch>
+                <Route path='/login' component={Login} authed={authed} />
+                <Route
+                  path='/register'
+                  exact
+                  component={Register}
+                  authed={authed}
+                />
+                <Route path='/employees' component={Employees} authed={authed} />
+                <Route path='/machines' component={Machines} authed={authed} />
+                <Route path='/schedule' component={EmployeeSchedule} authed={authed} />
+                <Route path='/history' component={EmployeeHistory} authed={authed} />
+                <Redirect from='*' to='/home' />
+              </Switch>
+            </div>
+          </React.Fragment>
+        </BrowserRouter>
       </div>
     );
   }
