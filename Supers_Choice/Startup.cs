@@ -33,6 +33,8 @@ namespace Supers_Choice
             services.AddSingleton<IConfiguration>(Configuration);
             services.AddTransient<EmployeeRepository>();
             services.AddTransient<MachineRepository>();
+            services.AddTransient<MachineDetailRepository>();
+            services.AddTransient<DowntimeCodeRepository>();
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>

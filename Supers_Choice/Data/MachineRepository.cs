@@ -16,7 +16,7 @@ namespace Supers_Choice.Data
 
         public void Add(Machine machineToAdd)
         {
-            var sql = @"INSERT INTO [dbo].[Customers]
+            var sql = @"INSERT INTO [dbo].[Machines]
                                ([name]
                                ,[employeeId]
                                ,[isDeleted]

@@ -19,7 +19,7 @@ namespace Supers_Choice.Data
 
         public void Add(Employee employeeToAdd)
         {
-            var sql = @"INSERT INTO [dbo].[Customers]
+            var sql = @"INSERT INTO [dbo].[Employees]
                                ([firstName]
                                ,[lastName]
                                ,[isSupervisor]
