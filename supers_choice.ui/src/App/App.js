@@ -8,6 +8,10 @@ import fbConnection from '../helpers/data/connection';
 import Login from '../components/pages/Login/Login';
 import Register from '../components/pages/Register/Register';
 import MyNavbar from '../components/shared/MyNavbar/MyNavbar';
+import Employees from '../components/pages/Employees/Employees';
+import Machines from '../components/pages/Machines/Machines';
+import EmployeeSchedule from '../components/pages/EmployeeSchedule/EmployeeSchedule';
+import EmployeeHistory from '../components/pages/EmployeeHistory/EmployeeHistory';
 
 fbConnection();
 
