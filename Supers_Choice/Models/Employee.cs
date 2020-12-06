@@ -6,7 +6,8 @@
         public string firstName { get; set; }
         public string lastName { get; set; }
         public bool isSupervisor { get; set; }
-        public bool isManager { get; set; }
         public bool isDeleted { get; set; }
+        public string email { get; set; }
+        public string password { get; set; }
     }
 }
