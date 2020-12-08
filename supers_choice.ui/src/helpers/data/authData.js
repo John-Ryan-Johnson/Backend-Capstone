@@ -20,24 +20,23 @@ axios.interceptors.request.use(function (request) {
 const registerUser = (user) => {
 
   //sub out whatever auth method firebase provides that you want to use.
-  return firebase.auth().createUserWithEmailAndPassword(user.email.trim(), user.password).then(cred => {
+  return firebase.auth().createUserWithEmailAndPassword(user.email, user.password).then(cred => {
 
     //get email from firebase
-    let userInfo = {
-      EmailAddress: cred.user.email,
-      FirstName: user.firstName,
-      LastName: user.lastName,
-      IsDeleted: user.isDeleted,
+    const userInfo = {
+      uid: firebase.auth().currentUser.uid,
+      email: user.email,
+      password: user.password,
+      firstName: user.firstName,
+      lastName: user.lastName,
     };
 
     //get token from firebase
     cred.user.getIdToken()
       //save the token to the session storage
       .then(token => sessionStorage.setItem('token',token))
-
       //save the user to the the api
-      .then(() => axios.post(`${baseUrl}/employees`, userInfo))
-      .catch(err => console.error('Post Employee broke', err));
+      .then(() => axios.post(`${baseUrl}/employees`,userInfo));
   });
 };
 
@@ -47,16 +46,9 @@ const loginUser = (user) => {
     //get token from firebase
     cred.user.getIdToken()
         //save the token to the session storage
-      .then(token => sessionStorage.setItem('token',token))
-      .catch(err => console.error('Log in Broke', err));
+      .then(token => sessionStorage.setItem('token',token));
   });
 };
-
-const getUserInfo = (employeeId) => new Promise((resolve, reject) => {
-    axios.get(`${baseUrl}/employees/${employeeId}`)
-        .then(response => resolve(response.data))
-        .catch(err => reject(err));
-});
 
 const logoutUser = () => {
   sessionStorage.removeItem('token');
@@ -64,20 +56,13 @@ const logoutUser = () => {
 };
 
 const getUid = () => {
-  return firebase.auth().currentUser.uid;
+  const token = sessionStorage.getItem('token');
+  let uid = '';
+
+  if (token != null) {
+    uid = firebase.auth().currentUser.uid;
+  }
+  return uid;
 };
 
-const getEmployees = () => new Promise((resolve, reject) => {
-  axios.get(`${baseUrl}/employees`)
-      .then(response => resolve(response.data))
-      .catch(err => reject(err));
-});
-
-export default {
-  getUid,
-  loginUser,
-  logoutUser,
-  registerUser,
-  getUserInfo,
-  getEmployees
-};
+export default {  getUid, loginUser, logoutUser, registerUser };

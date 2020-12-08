@@ -8,4 +8,10 @@ const getAllEmployees = () => new Promise((resolve, reject) => {
   .catch(error => reject(error));
 });
 
-export default {getAllEmployees};
+const getEmployeeById =(employeeId) => new Promise((resolve, reject) => {
+  axios.get(`${baseUrl}/employees/${employeeId}`)
+  .then(response => resolve(response.data))
+  .catch(err => reject(err));
+});
+
+export default { getAllEmployees, getEmployeeById };
