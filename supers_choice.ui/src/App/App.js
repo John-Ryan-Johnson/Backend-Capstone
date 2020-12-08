@@ -9,6 +9,7 @@ import fbConnection from '../helpers/data/connection';
 import Login from '../components/pages/Login/Login';
 import Register from '../components/pages/Register/Register';
 import MyNavbar from '../components/shared/MyNavbar/MyNavbar';
+import Home from '../components/pages/Home/Home';
 import Employees from '../components/pages/Employees/Employees';
 import Machines from '../components/pages/Machines/Machines';
 import EmployeeSchedule from '../components/pages/EmployeeSchedule/EmployeeSchedule';
@@ -45,12 +46,8 @@ class App extends React.Component {
             <div className="container d-flex justify-content-center">
               <Switch>
                 <Route path='/login' component={Login} authed={authed} />
-                <Route
-                  path='/register'
-                  exact
-                  component={Register}
-                  authed={authed}
-                />
+                <Route path='/register' component={Register} authed={authed} />
+                <Route path='/home' component={Home} authed={authed} />
                 <Route path='/employees' component={Employees} authed={authed} />
                 <Route path='/machines' component={Machines} authed={authed} />
                 <Route path='/schedule/:employeeId' component={EmployeeSchedule} authed={authed} />
