@@ -28,7 +28,6 @@ class App extends React.Component {
         this.setState({ authed: false });
       }
     });
-
   }
 
   componentWillUnmount() {
@@ -54,8 +53,8 @@ class App extends React.Component {
                 />
                 <Route path='/employees' component={Employees} authed={authed} />
                 <Route path='/machines' component={Machines} authed={authed} />
-                <Route path='/schedule' component={EmployeeSchedule} authed={authed} />
-                <Route path='/history' component={EmployeeHistory} authed={authed} />
+                <Route path='/schedule/:employeeId' component={EmployeeSchedule} authed={authed} />
+                <Route path='/history/:employeeId' component={EmployeeHistory} authed={authed} />
                 <Redirect from='*' to='/home' />
               </Switch>
             </div>

@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
 import authRequests from '../../../helpers/data/authData';
 
 class Login extends React.Component {

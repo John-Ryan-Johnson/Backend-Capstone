@@ -13,7 +13,7 @@ import {
 } from 'reactstrap';
 import firebase from 'firebase/app';
 import 'firebase/auth';
-import authData from '../../../helpers/data/authData';
+
 
 class MyNavbar extends React.Component {
   state = {
@@ -30,28 +30,12 @@ class MyNavbar extends React.Component {
     firebase.auth().signOut()
   }
 
-  componentDidMount() {
-    this.removeListener = firebase.auth().onAuthStateChanged((user) => {
-      if (user) {
-        const email = firebase.auth().currentUser.email;
-        authData.getEmployees()
-          .then(response => response.filter(x => x.emailAddress === email))
-          .then(user => this.setState({id: user[0].employeeId}))
-          .catch(err => console.error('Could not filter employees', err))
-      }
-    })
-  }
-
-  componentWillUnmount() {
-    this.removeListener();
-  }
-
   render() {
     const { isOpen } = this.state;
-    const { authed, isSupervisor, isManager } = this.props;
+    const { authed, isSupervisor } = this.props;
 
     const authedNavBar = () => {
-      if (authed && !isSupervisor && !isManager) {
+      if (authed && !isSupervisor) {
         return (
           <Nav className='ml-auto' navbar>
             <NavItem>
@@ -71,8 +55,7 @@ class MyNavbar extends React.Component {
             </NavItem>
           </Nav>
         );
-      // eslint-disable-next-line no-mixed-operators
-      } else if (authed && isSupervisor || isManager) {
+      } else if (authed && isSupervisor) {
         return (
           <Nav className='ml-auto' navbar>
             <NavItem>
@@ -92,7 +75,7 @@ class MyNavbar extends React.Component {
             </NavItem>
           </Nav>
         );
-      } else if (!authed) {
+      } else {
         return (
           <Nav className='ml-auto' navbar>
             <NavItem>
