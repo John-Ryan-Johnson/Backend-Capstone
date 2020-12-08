@@ -90,8 +90,8 @@ class MyNavbar extends React.Component {
 
   return (
     <div className='MyNavbar'>
-      <Navbar dark expand='md' fixed='top'>
-        <NavbarBrand href='/home'>Super's Choice</NavbarBrand>
+      <Navbar color="dark" expand='md' fixed='top'>
+        <NavbarBrand className="brand" href='/home'>Super's Choice</NavbarBrand>
         <NavbarToggler onClick={this.toggle} />
         <Collapse isOpen={isOpen} navbar>
           {authedNavBar()}
