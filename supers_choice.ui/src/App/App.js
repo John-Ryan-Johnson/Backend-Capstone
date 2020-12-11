@@ -15,6 +15,7 @@ import Machines from '../components/pages/Machines/Machines';
 import EmployeeSchedule from '../components/pages/EmployeeSchedule/EmployeeSchedule';
 import EmployeeHistory from '../components/pages/EmployeeHistory/EmployeeHistory';
 
+
 fbConnection();
 
 
@@ -24,7 +25,9 @@ class App extends React.Component {
   componentDidMount() {
     this.removeListener = firebase.auth().onAuthStateChanged((user) => {
       if (user) {
-        this.setState({ authed: true });
+       this.setState({ authed: true });
+
+
       } else {
         this.setState({ authed: false });
       }
@@ -50,7 +53,7 @@ class App extends React.Component {
                 <Route path='/home' component={Home} authed={authed} />
                 <Route path='/employees' component={Employees} authed={authed} />
                 <Route path='/machines' component={Machines} authed={authed} />
-                <Route path='/schedule/:employeeId' component={EmployeeSchedule} authed={authed} />
+                <Route path='/schedule' component={EmployeeSchedule} authed={authed} />
                 <Route path='/history/:employeeId' component={EmployeeHistory} authed={authed} />
                 <Redirect from='*' to='/home' />
               </Switch>

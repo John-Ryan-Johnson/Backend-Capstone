@@ -2,20 +2,23 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import authRequests from '../../../helpers/data/authData';
 
+
 class Login extends React.Component {
   state = {
     user: {
       email: '',
       password: '',
+      isSupervisor: false,
     },
   };
 
   loginClickEvent = (e) => {
     const { user } = this.state;
     e.preventDefault();
-    authRequests.loginUser(user)
+    authRequests
+      .loginUser(user)
       .then(() => {
-        this.props.history.push('/home');
+        this.props.history.push('/animals');
       })
       .catch(() => {
         window.alert('You are not logged in');
@@ -23,17 +26,6 @@ class Login extends React.Component {
       });
   };
 
-  logOutClickEvent = (e) => {
-    const { user } = this.state;
-    e.preventDefault();
-    authRequests.logoutUser(user)
-      .then(() => {
-        this.props.history.push('/home');
-      })
-      .catch((error) => {
-        console.error('could not log you out', error);
-      });
-  };
 
   emailChange = (e) => {
     const tempUser = { ...this.state.user };

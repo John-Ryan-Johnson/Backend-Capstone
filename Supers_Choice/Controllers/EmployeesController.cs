@@ -2,16 +2,24 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Supers_Choice.Data;
 using Supers_Choice.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Supers_Choice.Data;
+
 
 namespace Supers_Choice.Controllers
 {
+    public abstract class FirebaseEnabledController : ControllerBase
+    {
+        protected string UserId => User.FindFirst(x => x.Type == "user_id").Value;
+    }
+
     [Route("api/employees")]
     [ApiController]
-    public class EmployeesController : ControllerBase
+    
+    public class EmployeesController : FirebaseEnabledController
     {
         EmployeeRepository _repo;
 
@@ -57,6 +65,16 @@ namespace Supers_Choice.Controllers
             _repo.Remove(id);
 
             return Ok();
+        }
+
+        [HttpGet("uid")]
+        public IActionResult GetEmployeeByUid()
+        {
+            var employee = _repo.GetByUid(UserId);
+
+            if (employee == null) return NotFound("No employee with that uid was found");
+
+            return Ok(employee);
         }
     }
 }

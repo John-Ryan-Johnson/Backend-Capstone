@@ -13,12 +13,14 @@ import {
 } from 'reactstrap';
 import firebase from 'firebase/app';
 import 'firebase/auth';
+import employeesData from '../../../helpers/data/employeesData';
 
 
 class MyNavbar extends React.Component {
   state = {
     isOpen: false,
-    id: '',
+    id: 0,
+    isSupervisor: false,
   }
 
   toggle = () => {
@@ -30,6 +32,30 @@ class MyNavbar extends React.Component {
     firebase.auth().signOut()
   }
 
+  getUser =() => {
+     firebase.auth().onAuthStateChanged((user) => {
+      const uid = user.uid;
+      console.error(uid);
+      employeesData.getEmployeeByUid()
+      .then((employeeResponse) =>{
+        this.setState({
+        id: employeeResponse.id,
+        isSupervisor: employeeResponse.isSupervisor,
+      });
+      console.error(employeeResponse);
+    })
+    .catch((error) => console.error(error));
+  });
+}
+
+  componentDidMount() {
+    this.getUser();
+  }
+
+  componentWillUnmount() {
+    this.getUser();
+  }
+
   render() {
     const { isOpen } = this.state;
     const { authed, isSupervisor } = this.props;
@@ -39,12 +65,12 @@ class MyNavbar extends React.Component {
         return (
           <Nav className='ml-auto' navbar>
             <NavItem>
-              <NavLink tag={RRNavLink} className='nav-link' to={`/employeeSchedule/${this.state.id}`}>
+              <NavLink tag={RRNavLink} className='nav-link' to='/schedule'>
                 Schedule
               </NavLink>
             </NavItem>
             <NavItem>
-              <NavLink tag={RRNavLink} className='nav-link' to={`/employeeHistory/${this.state.id}`}>
+              <NavLink tag={RRNavLink} className='nav-link' to={`/history/${this.state.id}`}>
                 History
               </NavLink>
             </NavItem>
@@ -60,12 +86,12 @@ class MyNavbar extends React.Component {
           <Nav className='ml-auto' navbar>
             <NavItem>
               <NavLink tag={RRNavLink} className='nav-link' to='/employees'>
-                Schedule
+                Employees
               </NavLink>
             </NavItem>
             <NavItem>
               <NavLink tag={RRNavLink} className='nav-link' to='/machines'>
-                History
+                Machines
               </NavLink>
             </NavItem>
             <NavItem>

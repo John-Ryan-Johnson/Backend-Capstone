@@ -1,13 +1,26 @@
 import React from 'react';
 import './EmployeeScheduleTable.scss';
+import { Link } from 'react-router-dom';
 
 class EmployeeScheduleTable extends React.Component {
   render() {
-    return (
-      <div className="EmployeeScheduleTable">
-        <h1>Employee Schedule Table</h1>
-      </div>
-    );
+    const { machine, employeeId } = this.props;
+
+    if (machine) {
+      return (
+        <div className="EmployeeScheduleTable">
+          <tr>
+            <td>{machine.name}</td>
+            <td>{machine.Date}</td>
+            <Link to={`/schedule/${employeeId}`}>View</Link>
+          </tr>
+        </div>
+      );
+    } else {
+      return (
+        <h3>You are not on the schedule.</h3>
+      )
+    }
   }
 }
 

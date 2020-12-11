@@ -1,4 +1,6 @@
-﻿namespace Supers_Choice.Models
+﻿using System;
+
+namespace Supers_Choice.Models
 {
     public class Employee
     {
@@ -9,5 +11,6 @@
         public bool IsDeleted { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
+        public string FirebaseUid { get; set; }
     }
 }

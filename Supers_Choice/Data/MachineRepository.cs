@@ -1,18 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Dapper;
 using Microsoft.Data.SqlClient;
+using Microsoft.Extensions.Configuration;
 using Supers_Choice.Models;
 
 namespace Supers_Choice.Data
 {
     public class MachineRepository
     {
-        static List<Machine> _machines = new List<Machine>();
-
-        const string _connectionString = "Server=localhost;Database=SupersChoice;Trusted_Connection=True;";
+        readonly string _connectionString;
+        public MachineRepository(IConfiguration configuration)
+        {
+            _connectionString = configuration.GetConnectionString("SupersChoice");
+        }
 
         public void Add(Machine machineToAdd)
         {
@@ -67,6 +68,19 @@ namespace Supers_Choice.Data
             using var db = new SqlConnection(_connectionString);
 
             db.Execute(sql, new { id = machineId });
+        }
+
+        public List<Machine> GetMachinesByEmployeeId(int employeeId)
+        {
+            using var db = new SqlConnection(_connectionString);
+
+            var parameters = new { eid = employeeId };
+
+            var machines = db.Query<Machine>(@"select *
+                                            from Machines
+                                            where employeeId = @eid", parameters);
+
+            return machines.ToList();
         }
     }
 }

@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Dapper;
-using Microsoft.Data.SqlClient;
-using Microsoft.Extensions.Configuration;
 using Supers_Choice.Models;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.Data.SqlClient;
+using Dapper;
+using Microsoft.Extensions.Configuration;
+
 
 namespace Supers_Choice.Data
 {
@@ -23,11 +25,12 @@ namespace Supers_Choice.Data
                                ([firstName]
                                ,[lastName]
                                ,[isSupervisor]
-                               ,[isManager]
-                                [isDeleted])
+                               ,[isDeleted]        
+                               ,[email]
+                               ,[password]
+                               ,[firebaseUid])
                         Output inserted.id
-                        VALUES
-                               (@firstName,@lastName,@isSupervisor,@isManager,@isDeleted)";
+                        VALUES (@firstName,@lastName,@isSupervisor,@isDeleted,@email,@password, @firebaseUid)";
 
             using var db = new SqlConnection(_connectionString);
 
@@ -69,6 +72,21 @@ namespace Supers_Choice.Data
             using var db = new SqlConnection(_connectionString);
 
             db.Execute(sql, new { id = employeeId });
+        }
+
+        public Employee GetByUid(string uid)
+        {
+            using var db = new SqlConnection(_connectionString);
+
+            var query = @"select *
+                          from Employees
+                          where firebaseUid = @uid";
+
+            var parameters = new { uid };
+
+            var employee = db.QueryFirstOrDefault<Employee>(query, parameters);
+
+            return employee;
         }
     }
 }

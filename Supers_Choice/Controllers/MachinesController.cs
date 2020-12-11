@@ -15,9 +15,9 @@ namespace Supers_Choice.Controllers
     {
         MachineRepository _repo;
 
-        public MachinesController()
+        public MachinesController(MachineRepository repo)
         {
-            _repo = new MachineRepository();
+            _repo = repo;
         }
 
         [HttpPost]
@@ -57,6 +57,16 @@ namespace Supers_Choice.Controllers
             _repo.Remove(id);
 
             return Ok();
+        }
+
+        [HttpGet("schedule/{employeeId}")]
+        public IActionResult GetMachineByEmployeeId(int employeeId)
+        {
+            var machines = _repo.GetMachinesByEmployeeId(employeeId);
+
+            if (machines == null) return NotFound("No machines found for this employee");
+
+            return Ok(machines);
         }
     }
 }
