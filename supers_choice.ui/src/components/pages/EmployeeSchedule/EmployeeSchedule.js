@@ -9,7 +9,8 @@ class EmployeeSchedule extends React.Component {
   }
 
   getIdThenGetMachines = () => {
-    const employeeId = this.props.employeeId;
+    const employeeId = this.props.match.params.employeeId;
+    console.log(employeeId);
     machinesData.getMachinesByEmployeeId(employeeId)
     .then(machines => this.setState({ machines }))
   }
@@ -21,7 +22,7 @@ class EmployeeSchedule extends React.Component {
   render() {
     const { machines } = this.state;
     console.log(this.state);
-    const buildScheduleTable = machines.map((machine) => {
+    const buildScheduleTable = () => machines.map((machine) => {
       return <EmployeeScheduleTable key={machine.Id} machine={machine} />;
     })
 
@@ -31,14 +32,14 @@ class EmployeeSchedule extends React.Component {
         <div>
           <table className="table">
             <thead className="thead-dark">
-              <tr>
-                <th scope="col">Machine</th>
-                <th scope="col">Date</th>
-                <th scope="col">Details</th>
+              <tr className="row">
+                <th className="col-sm-4">Machine</th>
+                <th className="col-sm-4">Date</th>
+                <th className="col-sm-4">Details</th>
               </tr>
             </thead>
             <tbody>
-              {buildScheduleTable}
+              {buildScheduleTable()}
             </tbody>
           </table>
         </div>
