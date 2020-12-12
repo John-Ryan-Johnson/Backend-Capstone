@@ -25,8 +25,9 @@ class MyNavbar extends React.Component {
 
   state = {
     isOpen: false,
-    id: 0,
+    employeeId: 0,
     isSupervisor: false,
+
   }
 
   toggle = () => {
@@ -45,7 +46,7 @@ class MyNavbar extends React.Component {
       employeesData.getEmployeeByUid()
       .then((employeeResponse) =>{
         this.setState({
-        id: employeeResponse.data.id,
+        employeeId: employeeResponse.data.id,
         isSupervisor: employeeResponse.data.isSupervisor,
       });
       console.error(employeeResponse.data);
@@ -63,7 +64,7 @@ class MyNavbar extends React.Component {
   }
 
   render() {
-    const { isOpen, isSupervisor } = this.state;
+    const { isOpen, isSupervisor, employeeId } = this.state;
     const { authed } = this.props;
 
     const authedNavBar = () => {
@@ -71,7 +72,7 @@ class MyNavbar extends React.Component {
         return (
           <Nav className='ml-auto' navbar>
             <NavItem>
-              <NavLink tag={RRNavLink} className='nav-link' to={`/schedule/{this.state.id}`}>
+              <NavLink tag={RRNavLink} className='nav-link' to={`/schedule/${employeeId}`}>
                 Schedule
               </NavLink>
             </NavItem>
