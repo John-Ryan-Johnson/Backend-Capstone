@@ -59,7 +59,7 @@ class App extends React.Component {
                 <Route path='/employees' component={Employees} authed={authed} />
                 <Route path='/machines' component={Machines} authed={authed} />
                 <Route path='/schedule/:employeeId' component={EmployeeSchedule} authed={authed} />
-                <Route path='/history' component={EmployeeHistory} authed={authed} />
+                <Route path='/history/:employeeId' component={EmployeeHistory} authed={authed} />
                 <Route path='/machine/:employeeId' component={SingleMachine} authed={authed} />
                 <Redirect from='*' to='/home' />
               </Switch>

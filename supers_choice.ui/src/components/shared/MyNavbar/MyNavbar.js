@@ -77,7 +77,7 @@ class MyNavbar extends React.Component {
               </NavLink>
             </NavItem>
             <NavItem>
-              <NavLink tag={RRNavLink} className='nav-link' to={`/history/{this.state.id}`}>
+              <NavLink tag={RRNavLink} className='nav-link' to={`/history/${employeeId}`}>
                 History
               </NavLink>
             </NavItem>
