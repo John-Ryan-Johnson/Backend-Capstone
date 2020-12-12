@@ -11,12 +11,18 @@ import {
   NavItem,
   NavLink,
 } from 'reactstrap';
+import PropTypes from 'prop-types';
 import firebase from 'firebase/app';
 import 'firebase/auth';
 import employeesData from '../../../helpers/data/employeesData';
 
 
 class MyNavbar extends React.Component {
+  static propTypes = {
+    authed: PropTypes.bool.isRequired,
+    isSupervisor: PropTypes.bool.isRequired
+  }
+
   state = {
     isOpen: false,
     id: 0,
@@ -39,10 +45,10 @@ class MyNavbar extends React.Component {
       employeesData.getEmployeeByUid()
       .then((employeeResponse) =>{
         this.setState({
-        id: employeeResponse.id,
-        isSupervisor: employeeResponse.isSupervisor,
+        id: employeeResponse.data.id,
+        isSupervisor: employeeResponse.data.isSupervisor,
       });
-      console.error(employeeResponse);
+      console.error(employeeResponse.data);
     })
     .catch((error) => console.error(error));
   });
@@ -57,20 +63,20 @@ class MyNavbar extends React.Component {
   }
 
   render() {
-    const { isOpen } = this.state;
-    const { authed, isSupervisor } = this.props;
+    const { isOpen, isSupervisor } = this.state;
+    const { authed } = this.props;
 
     const authedNavBar = () => {
       if (authed && !isSupervisor) {
         return (
           <Nav className='ml-auto' navbar>
             <NavItem>
-              <NavLink tag={RRNavLink} className='nav-link' to='/schedule'>
+              <NavLink tag={RRNavLink} className='nav-link' to={`/schedule/{this.state.id}`}>
                 Schedule
               </NavLink>
             </NavItem>
             <NavItem>
-              <NavLink tag={RRNavLink} className='nav-link' to={`/history/${this.state.id}`}>
+              <NavLink tag={RRNavLink} className='nav-link' to={`/history/{this.state.id}`}>
                 History
               </NavLink>
             </NavItem>

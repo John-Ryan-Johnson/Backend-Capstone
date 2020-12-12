@@ -18,7 +18,7 @@ class Login extends React.Component {
     authRequests
       .loginUser(user)
       .then(() => {
-        this.props.history.push('/animals');
+        this.props.history.push('/home');
       })
       .catch(() => {
         window.alert('You are not logged in');

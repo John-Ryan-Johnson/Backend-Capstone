@@ -18,7 +18,7 @@ namespace Supers_Choice.Controllers
 
     [Route("api/employees")]
     [ApiController]
-    
+
     public class EmployeesController : FirebaseEnabledController
     {
         EmployeeRepository _repo;
