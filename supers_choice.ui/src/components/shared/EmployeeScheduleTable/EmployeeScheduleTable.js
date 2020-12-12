@@ -10,13 +10,13 @@ class EmployeeScheduleTable extends React.Component {
 
     if (machine) {
       return (
-        <div className="EmployeeScheduleTable">
+        <>
           <tr>
             <td>{machine.name}</td>
             <td>{shortDate}</td>
-            <td><Link className="view btn btn-dark btn-sm ml-5" to={`/machine/${employeeId}`}>View</Link></td>
+            <td><Link className="machineLink" to={`/machine/${employeeId}`}>View</Link></td>
           </tr>
-        </div>
+        </>
       );
     } else {
       return (

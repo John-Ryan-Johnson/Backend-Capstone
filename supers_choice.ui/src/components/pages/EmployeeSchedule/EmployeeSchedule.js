@@ -29,13 +29,13 @@ class EmployeeSchedule extends React.Component {
     return (
       <div className="EmployeeSchedule">
         <h1 className="mb-5">Employee Schedule</h1>
-        <div>
+        <div className="table-responsive">
           <table className="table">
             <thead className="thead-dark">
-              <tr className="row">
-                <th className="col-sm-4">Machine</th>
-                <th className="col-sm-4">Date</th>
-                <th className="col-sm-4">Details</th>
+              <tr>
+                <th scope="col-1">Machine</th>
+                <th scope="col-5">Date</th>
+                <th scope="col">Details</th>
               </tr>
             </thead>
             <tbody>

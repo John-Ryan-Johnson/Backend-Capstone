@@ -14,6 +14,7 @@ import Employees from '../components/pages/Employees/Employees';
 import Machines from '../components/pages/Machines/Machines';
 import EmployeeSchedule from '../components/pages/EmployeeSchedule/EmployeeSchedule';
 import EmployeeHistory from '../components/pages/EmployeeHistory/EmployeeHistory';
+import SingleMachine from '../components/pages/SingleMachine/SingleMachine';
 
 
 fbConnection();
@@ -59,6 +60,7 @@ class App extends React.Component {
                 <Route path='/machines' component={Machines} authed={authed} />
                 <Route path='/schedule/:employeeId' component={EmployeeSchedule} authed={authed} />
                 <Route path='/history' component={EmployeeHistory} authed={authed} />
+                <Route path='/machine/:employeeId' component={SingleMachine} authed={authed} />
                 <Redirect from='*' to='/home' />
               </Switch>
             </div>
