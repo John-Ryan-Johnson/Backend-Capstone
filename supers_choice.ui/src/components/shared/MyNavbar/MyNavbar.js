@@ -17,6 +17,7 @@ import 'firebase/auth';
 import employeesData from '../../../helpers/data/employeesData';
 
 
+
 class MyNavbar extends React.Component {
   static propTypes = {
     authed: PropTypes.bool.isRequired,
@@ -72,13 +73,13 @@ class MyNavbar extends React.Component {
         return (
           <Nav className='ml-auto' navbar>
             <NavItem>
-              <NavLink tag={RRNavLink} className='nav-link' to={`/schedule/${employeeId}`}>
-                Schedule
+              <NavLink tag={RRNavLink} className='nav-link mr-3' to={`/schedule/${employeeId}`}>
+                <i class="fas fa-calendar-alt fa-lg"></i>
               </NavLink>
             </NavItem>
             <NavItem>
-              <NavLink tag={RRNavLink} className='nav-link' to={`/history/${employeeId}`}>
-                History
+              <NavLink tag={RRNavLink} className='nav-link mr-3' to={`/history/${employeeId}`}>
+                <i className="fas fa-history fa-lg"></i>
               </NavLink>
             </NavItem>
             <NavItem>
@@ -93,12 +94,12 @@ class MyNavbar extends React.Component {
           <Nav className='ml-auto' navbar>
             <NavItem>
               <NavLink tag={RRNavLink} className='nav-link' to='/employees'>
-                Employees
+                <i className="fas fa-users fa-lg mr-3"></i>
               </NavLink>
             </NavItem>
             <NavItem>
               <NavLink tag={RRNavLink} className='nav-link' to='/machines'>
-                Machines
+                <i className="fas fa-industry fa-lg mr-3"></i>
               </NavLink>
             </NavItem>
             <NavItem>
