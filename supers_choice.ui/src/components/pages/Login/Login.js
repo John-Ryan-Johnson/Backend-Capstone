@@ -44,8 +44,7 @@ class Login extends React.Component {
 
     return (
       <div className='Login w-100'>
-        <h1 className='heading text-center'>Login</h1>
-        <form className='form-horizontal col-sm-6 mx-auto'>
+        <form className='form-horizontal col-sm-6 mx-auto mt-5'>
           <div className='form-group justify-content-center'>
             <label
               htmlFor='inputEmail'
