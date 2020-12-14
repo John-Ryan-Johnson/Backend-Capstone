@@ -10,7 +10,6 @@ class EmployeeSchedule extends React.Component {
 
   getIdThenGetMachines = () => {
     const employeeId = this.props.match.params.employeeId;
-    console.log(employeeId);
     machinesData.getMachinesByEmployeeId(employeeId)
     .then(machines => this.setState({ machines }))
   }
@@ -21,7 +20,6 @@ class EmployeeSchedule extends React.Component {
 
   render() {
     const { machines } = this.state;
-    console.log(this.state);
     const buildScheduleTable = () => machines.map((machine) => {
       return <EmployeeScheduleTable key={machine.Id} machine={machine} />;
     })

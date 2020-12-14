@@ -21,14 +21,13 @@ import employeesData from '../../../helpers/data/employeesData';
 class MyNavbar extends React.Component {
   static propTypes = {
     authed: PropTypes.bool.isRequired,
-    isSupervisor: PropTypes.bool.isRequired
+    //isSupervisor: PropTypes.bool.isRequired
   }
 
   state = {
     isOpen: false,
     employeeId: 0,
     isSupervisor: false,
-
   }
 
   toggle = () => {
@@ -125,7 +124,7 @@ class MyNavbar extends React.Component {
   return (
     <div className='MyNavbar'>
       <Navbar color="dark" expand='md' fixed='top'>
-        <NavbarBrand className="brand" href='/home'>Super's Choice</NavbarBrand>
+        <NavbarBrand className="brand text-white" href='/home'>Super's Choice</NavbarBrand>
         <NavbarToggler onClick={this.toggle} />
         <Collapse isOpen={isOpen} navbar>
           {authedNavBar()}

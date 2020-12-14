@@ -10,19 +10,10 @@ const getAllEmployees = () => new Promise((resolve, reject) => {
 
 const getEmployeeById = (employeeId) =>
   new Promise((resolve, reject) => {
-    axios
-      .get(`${baseUrl}/employees/${employeeId}`)
+    axios.get(`${baseUrl}/employees/${employeeId}`)
       .then((response) => resolve(response.data))
       .catch((err) => reject(err));
   });
-
-// const getEmployeeByUid = (uid) =>
-//   new Promise((resolve, reject) => {
-//     axios
-//       .get(`${baseUrl}/employees/uid/${uid}`)
-//       .then((response) => resolve(response.data))
-//       .catch((err) => reject(err));
-//   });
 
 const getEmployeeByUid = () => axios.get(`${baseUrl}/employees/uid`);
 
