@@ -14,4 +14,10 @@ const getMachinesByEmployeeId = (employeeId) => new Promise((resolve, reject) =>
   .catch(error => reject(error));
 });
 
-export default {getAllMachines, getMachinesByEmployeeId};
+const getMachineInfoByEmployeeId = (employeeId) => new Promise((resolve, reject) => {
+  axios.get(`${baseUrl}/machines/machineInfo/${employeeId}`)
+  .then(response => resolve(response.data))
+  .catch(error => reject(error));
+});
+
+export default {getAllMachines, getMachinesByEmployeeId, getMachineInfoByEmployeeId};

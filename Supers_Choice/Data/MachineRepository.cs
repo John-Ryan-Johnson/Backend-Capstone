@@ -82,5 +82,23 @@ namespace Supers_Choice.Data
 
             return machines.ToList();
         }
+
+        public List<MachineInfo> GetSingleMachineAndInfoByEmployeeId(int employeeId)
+        {
+            using var db = new SqlConnection(_connectionString);
+
+            var query = @"select m.Id as [MachineId], m.name as [Name], md.runtime as [Runtime], md.downtime as [Downtime], md.notes as [Notes], dc.codeText as [Codes], e.Id as [EmployeeId]  
+                            from Machines m
+                            join MachineDetails md on md.Id = m.machineDetailId
+                            join DowntimeCodes dc on dc.Id = m.downtimeCodeId
+                            join Employees e on e.Id = m.employeeId
+                            where e.Id = @eid";
+
+            var parameters = new { eid = employeeId };
+
+            var info = db.Query<MachineInfo>(query, parameters).ToList();
+
+            return info;
+        }
     }
 }

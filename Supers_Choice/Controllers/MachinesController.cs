@@ -68,5 +68,15 @@ namespace Supers_Choice.Controllers
 
             return Ok(machines);
         }
+
+        [HttpGet("info/{employeeId}")]
+        public IActionResult GetAllMachineInfoByEmployeeId(int employeeId)
+        {
+            var machineInfo = _repo.GetSingleMachineAndInfoByEmployeeId(employeeId);
+
+            if (machineInfo == null) return NotFound("No machine and info with that employeeId was found");
+
+            return Ok(machineInfo);
+        }
     }
 }
