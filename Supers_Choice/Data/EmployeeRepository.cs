@@ -43,7 +43,8 @@ namespace Supers_Choice.Data
         {
             using var db = new SqlConnection(_connectionString);
 
-            var employees = db.Query<Employee>("select * from employees");
+            var employees = db.Query<Employee>(@"select * from employees
+                                                order by firstName asc");
 
             return employees.ToList();
         }

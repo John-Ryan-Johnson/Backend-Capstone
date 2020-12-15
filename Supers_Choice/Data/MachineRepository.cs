@@ -87,7 +87,7 @@ namespace Supers_Choice.Data
         {
             using var db = new SqlConnection(_connectionString);
 
-            var query = @"select m.Id as [MachineId], m.name as [Name], md.runtime as [Runtime], md.downtime as [Downtime], md.notes as [Notes], dc.codeText as [Codes], e.Id as [EmployeeId]  
+            var query = @"select m.Id as [MachineId], m.name as [Name], m.Date as [Date], md.runtime as [Runtime], md.downtime as [Downtime], md.notes as [Notes], dc.codeText as [Codes], e.Id as [EmployeeId], e.firstName as [Firstname], e.lastName as [Lastname]  
                             from Machines m
                             join MachineDetails md on md.Id = m.machineDetailId
                             join DowntimeCodes dc on dc.Id = m.downtimeCodeId
