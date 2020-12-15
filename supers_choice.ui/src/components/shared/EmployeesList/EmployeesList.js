@@ -1,6 +1,6 @@
 import React from 'react';
 import './EmployeesList.scss';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import employeeShape from '../../../helpers/propz/employeeShape';
 
 class EmployeesList extends React.Component {
@@ -10,7 +10,7 @@ class EmployeesList extends React.Component {
 
   render() {
     const { employee } = this.props;
-    const singleEmployeeLink = `/employee/${employee.Id}`;
+    const singleEmployeeLink = `/schedule/${employee.id}`;
     return (
       <div className="EmployeesList">
         <li className="list-group-item">
@@ -21,4 +21,4 @@ class EmployeesList extends React.Component {
   }
 }
 
-export default EmployeesList;
+export default withRouter(EmployeesList);

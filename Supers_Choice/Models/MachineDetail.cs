@@ -12,5 +12,6 @@ namespace Supers_Choice.Models
         public string Notes { get; set; }
         public decimal Runtime { get; set; }
         public decimal Downtime { get; set; }
+        
     }
 }
