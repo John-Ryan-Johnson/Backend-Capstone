@@ -48,7 +48,7 @@ class Login extends React.Component {
           <div className='form-group justify-content-center'>
             <label
               htmlFor='inputEmail'
-              className='col-sm-4 control-label'
+              className='col-sm-4 control-label mt-5'
             >
               Email:
             </label>

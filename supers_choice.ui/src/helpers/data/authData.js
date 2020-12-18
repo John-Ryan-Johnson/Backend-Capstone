@@ -29,8 +29,8 @@ const registerUser = (user) => {
       //get email from firebase
       const userInfo = {
         firebaseUid: firebase.auth().currentUser.uid,
-        email: cred.user.email,
-        password: cred.user.password,
+        email: user.email,
+        password: user.password,
         firstName: user.firstName,
         lastName: user.lastName,
       };
@@ -42,7 +42,7 @@ const registerUser = (user) => {
         .then((token) => sessionStorage.setItem('token', token))
 
         //save the user to the the api
-        .then(() => axios.post(`${baseUrl}/users`, userInfo));
+        .then(() => axios.post(`${baseUrl}/employees`, userInfo));
     });
 };
 
