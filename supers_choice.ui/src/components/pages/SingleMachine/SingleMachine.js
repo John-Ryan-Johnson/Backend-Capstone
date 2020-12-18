@@ -19,19 +19,20 @@ componentDidMount() {
 
   render() {
     const { machine } = this.state;
+
     return (
-      <div className="SingleMachine">
-        <h1>{machine.name}</h1>
-        <h3>{machine.date}</h3>
+      <div className="SingleMachine mt-5">
+        <h1 className="mt-5">{machine.name}</h1>
+        <h3 className="mt-5">{machine.date}</h3>
         <form>
-          <div className="col-6">
-            <input type="text" className="form-control" placeholder="Runtime"/>
+          <div className="col-12">
+            <input type="text" className="form-control text-center mb-3" placeholder="Runtime"/>
           </div>
-          <div className="col-6">
-            <input type="text" className="form-control" placeholder="Downtime"/>
+          <div className="col-12">
+            <input type="text" className="form-control text-center mb-3" placeholder="Downtime"/>
           </div>
           <div className="dropdown">
-            <button className="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <button className="btn btn-dark dropdown-toggle col-12 mb-3" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Dropdown
             </button>
             <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -42,13 +43,23 @@ componentDidMount() {
               <option value="meeting">5. meeting</option>
             </div>
           </div>
-          <textarea cols="30" rows="10">{machine.notes} {machine.codeText}</textarea>
+          <textarea cols="30" rows="10">{machine.notes}</textarea>
         </form>
-        <div className="btnContainer">
-          <button className="start btn btn-success">Start</button>
-          <button className="stop btn btn-danger">Stop</button>
-          <button className="pause btn btn-secondary">Pause</button>
-          <button className="reset btn btn-warning">Reset</button>
+        <div className="btnContainer1">
+          <div className="top-left mb-3">
+            <button className="start btn btn-success">Start</button>
+          </div>
+          <div className="bottom-left">
+            <button className="stop btn btn-danger">Stop</button>
+          </div>
+        </div>
+        <div className="btnContainer2">
+          <div className="top-right">
+            <button className="pause btn btn-primary">Pause</button>
+          </div>
+          <div className="bottom-right">
+            <button className="reset btn btn-warning">Reset</button>
+          </div>
         </div>
       </div>
     );

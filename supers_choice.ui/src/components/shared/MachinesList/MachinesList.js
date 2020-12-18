@@ -7,9 +7,10 @@ class MachinesList extends React.Component {
   static propTypes = {
     machine: machineShape.machineShape,
   }
+  
   render() {
     const { machine } = this.props;
-    const singleMachineLink = `/machine/${machine.employeeId}`
+    const singleMachineLink = `/machine/${machine.id}`
     return (
       <div className="MachinesList">
         <li className="list-group-item">

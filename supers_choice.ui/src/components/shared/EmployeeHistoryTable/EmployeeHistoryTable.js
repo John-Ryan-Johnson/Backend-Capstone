@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 class EmployeeHistoryTable extends React.Component {
   render() {
-    const { machine, employeeId } = this.props;
+    const { machine, machineId } = this.props;
     const dateProp = machine.date;
     const shortDate = dateProp.substring(0, 10);
 
@@ -15,7 +15,7 @@ class EmployeeHistoryTable extends React.Component {
             <td>{machine.name}</td>
             <td>{shortDate}</td>
             <td>
-              <Link className='machineLink' to={`/machine/${employeeId}`}>
+              <Link className='machineLink' to={`/machine/${machineId}`}>
                 View
               </Link>
             </td>
