@@ -69,10 +69,10 @@ namespace Supers_Choice.Controllers
             return Ok(machines);
         }
 
-        [HttpGet("info/{employeeId}")]
-        public IActionResult GetAllMachineInfoByEmployeeId(int employeeId)
+        [HttpGet("info/{employeeId}/{machineId}")]
+        public IActionResult GetAllMachineInfoByEmployeeIdAndMachineId(int employeeId, int machineId)
         {
-            var machineInfo = _repo.GetSingleMachineAndInfoByEmployeeId(employeeId);
+            var machineInfo = _repo.GetSingleMachineAndInfoByEmployeeIdAndMachineId(employeeId, machineId);
 
             if (machineInfo == null) return NotFound("No machine and info with that employeeId was found");
 

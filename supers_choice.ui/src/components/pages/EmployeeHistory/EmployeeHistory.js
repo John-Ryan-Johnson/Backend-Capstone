@@ -21,7 +21,6 @@ class EmployeeHistory extends React.Component {
 
   render() {
     const { machines } = this.state;
-    console.log(this.state);
     const buildHistoryTable = () => machines.map((machine) => {
       return <EmployeeHistoryTable key={machine.Id} machine={machine} />;
     })

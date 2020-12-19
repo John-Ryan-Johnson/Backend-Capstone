@@ -15,7 +15,7 @@ class EmployeeHistoryTable extends React.Component {
             <td>{machine.name}</td>
             <td>{shortDate}</td>
             <td>
-              <Link className='machineLink' to={`/machine/info/${machine.employeeId}`}>
+              <Link className='machineLink' to={`/machine/info/${machine.employeeId}/${machine.id}`}>
                 View
               </Link>
             </td>
