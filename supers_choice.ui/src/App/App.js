@@ -14,7 +14,8 @@ import Employees from '../components/pages/Employees/Employees';
 import Machines from '../components/pages/Machines/Machines';
 import EmployeeSchedule from '../components/pages/EmployeeSchedule/EmployeeSchedule';
 import EmployeeHistory from '../components/pages/EmployeeHistory/EmployeeHistory';
-import SingleMachine from '../components/pages/SingleMachine/SingleMachine';
+import SingleMachineHistoryPage from '../components/pages/SingleMachineHistoryPage/SingleMachineHistoryPage';
+import MachineForm from '../components/pages/MachineForm/MachineForm';
 
 
 fbConnection();
@@ -58,7 +59,8 @@ class App extends React.Component {
                 <Route path='/home' component={Home} authed={authed} />
                 <Route path='/employees' component={Employees} authed={authed} />
                 <Route path='/machines' component={Machines} authed={authed} />
-                <Route path='/machine/:machineId' component={SingleMachine} authed={authed} />
+                <Route path='/machineForm/:machineId' component={MachineForm} authed={authed} />
+                <Route path='/machine/info/:employeeId/:machineId' component={SingleMachineHistoryPage} authed={authed} />
                 <Route path='/schedule/:employeeId' component={EmployeeSchedule} authed={authed} />
                 <Route path='/history/:employeeId' component={EmployeeHistory} authed={authed} />
                 <Redirect from='*' to='/home' />

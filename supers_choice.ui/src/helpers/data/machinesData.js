@@ -14,8 +14,8 @@ const getMachinesByEmployeeId = (employeeId) => new Promise((resolve, reject) =>
   .catch(error => reject(error));
 });
 
-const getMachineInfoByEmployeeId = (employeeId) => new Promise((resolve, reject) => {
-  axios.get(`${baseUrl}/machines/machineInfo/${employeeId}`)
+const getMachineInfoByEmployeeId = (employeeId, machineId) => new Promise((resolve, reject) => {
+  axios.get(`${baseUrl}/machines/info/${employeeId}/${machineId}`)
   .then(response => resolve(response.data))
   .catch(error => reject(error));
 });

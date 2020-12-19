@@ -83,7 +83,7 @@ namespace Supers_Choice.Data
             return machines.ToList();
         }
 
-        public List<MachineInfo> GetSingleMachineAndInfoByEmployeeId(int employeeId)
+        public MachineInfo GetSingleMachineAndInfoByEmployeeIdAndMachineId(int employeeId, int machineId)
         {
             using var db = new SqlConnection(_connectionString);
 
@@ -92,11 +92,12 @@ namespace Supers_Choice.Data
                             join MachineDetails md on md.Id = m.machineDetailId
                             join DowntimeCodes dc on dc.Id = m.downtimeCodeId
                             join Employees e on e.Id = m.employeeId
-                            where e.Id = @eid";
+                            where e.Id = @eid
+                            and m.Id = @mid";
 
-            var parameters = new { eid = employeeId };
+            var parameters = new { eid = employeeId, mid = machineId};
 
-            var info = db.Query<MachineInfo>(query, parameters).ToList();
+            var info = db.QueryFirstOrDefault<MachineInfo>(query, parameters);
 
             return info;
         }

@@ -21,7 +21,6 @@ import employeesData from '../../../helpers/data/employeesData';
 class MyNavbar extends React.Component {
   static propTypes = {
     authed: PropTypes.bool.isRequired,
-    //isSupervisor: PropTypes.bool.isRequired
   }
 
   state = {
