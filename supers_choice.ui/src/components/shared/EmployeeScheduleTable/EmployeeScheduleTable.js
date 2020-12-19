@@ -19,7 +19,7 @@ class EmployeeScheduleTable extends React.Component {
           <tr>
             <td>{machine.name}</td>
             <td>{shortDate}</td>
-            <td><Link className="machineLink" to={`/machine/${machine.id}`}>View</Link></td>
+            <td><Link className="machineLink" to={`/machine/info/${machine.employeeId}`}>View</Link></td>
           </tr>
         </>
       );

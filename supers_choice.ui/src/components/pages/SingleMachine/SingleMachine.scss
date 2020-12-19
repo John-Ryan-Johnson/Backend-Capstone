@@ -2,6 +2,18 @@
   display: block;
 }
 
+.form-control {
+  width: 100%;
+}
+
+.dropDown {
+  width: 100%;
+}
+
+.menu {
+  width: 100%;
+}
+
 .btnContainer1 {
   display: flex;
   flex-wrap: wrap;
@@ -11,7 +23,7 @@
   flex: 50%;
 }
 
-.bottom-left {
+.top-right {
   flex: 50%;
 }
 
@@ -20,7 +32,7 @@
   flex-wrap: wrap;
 }
 
-.top-right {
+.bottom-left {
   flex: 50%;
 }
 
