@@ -1,13 +1,9 @@
 import React from 'react';
 import './EmployeeScheduleTable.scss';
 import { Link } from 'react-router-dom';
-import machineShape from '../../../helpers/propz/machineShape';
+
 
 class EmployeeScheduleTable extends React.Component {
-  static propTypes = {
-    machine: machineShape.machineShape,
-  }
-
   render() {
     const { machine } = this.props;
     const dateProp = machine.date;
@@ -19,7 +15,7 @@ class EmployeeScheduleTable extends React.Component {
           <tr>
             <td>{machine.name}</td>
             <td>{shortDate}</td>
-            <td><Link className="machineLink" to={`/machine/info/${machine.employeeId}`}>View</Link></td>
+            <td><Link className="machineLink" to={`/machine/schedule/${machine.employeeId}/${machine.id}`}>View</Link></td>
           </tr>
         </>
       );

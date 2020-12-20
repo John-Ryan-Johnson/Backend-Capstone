@@ -17,8 +17,6 @@ componentDidMount() {
   .catch((err) => console.error(err));
 }
 
-
-
   render() {
     const { machine } = this.state;
 

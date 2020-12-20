@@ -101,5 +101,24 @@ namespace Supers_Choice.Data
 
             return info;
         }
+
+        public MachineSchedule GetSingleMachineByEmployeeIdAndMachineId(int employeeId, int machineId)
+        {
+            using var db = new SqlConnection(_connectionString);
+
+            var query = @"select m.Id as [machineId], m.name as [Machine Name], m.Date as [Date], e.Id as [employeeId], e.firstName as [Firstname], e.lastName as [Lastname]
+                            from Machines m
+                            join Employees e
+                            on m.employeeId = e.Id
+                            Where e.Id = @eid
+                            And m.Id = @mid
+                            And Date = cast(getdate() as Date)";
+
+            var parameters = new { eid = employeeId, mid = machineId };
+
+            var schedule = db.QueryFirstOrDefault<MachineSchedule>(query, parameters);
+
+            return schedule;
+        }
     }
 }
