@@ -78,5 +78,15 @@ namespace Supers_Choice.Controllers
 
             return Ok(machineInfo);
         }
+
+        [HttpGet("schedule/{employeeId}/{machineId}")]
+        public IActionResult GetAllMachineByEmployeeIdAndMachineId(int employeeId, int machineId)
+        {
+            var machineSchedule = _repo.GetSingleMachineByEmployeeIdAndMachineId(employeeId, machineId);
+
+            if (machineSchedule == null) return NotFound("No machine with that employeeId was found");
+
+            return Ok(machineSchedule);
+        }
     }
 }

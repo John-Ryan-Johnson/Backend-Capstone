@@ -15,6 +15,7 @@ import Machines from '../components/pages/Machines/Machines';
 import EmployeeSchedule from '../components/pages/EmployeeSchedule/EmployeeSchedule';
 import EmployeeHistory from '../components/pages/EmployeeHistory/EmployeeHistory';
 import SingleMachineHistoryPage from '../components/pages/SingleMachineHistoryPage/SingleMachineHistoryPage';
+import SingleMachineSchedulePage from '../components/pages/SingleMachineSchedulePage/SingleMachineSchedulePage';
 import MachineForm from '../components/pages/MachineForm/MachineForm';
 
 
@@ -61,6 +62,7 @@ class App extends React.Component {
                 <Route path='/machines' component={Machines} authed={authed} />
                 <Route path='/machineForm/:machineId' component={MachineForm} authed={authed} />
                 <Route path='/machine/info/:employeeId/:machineId' component={SingleMachineHistoryPage} authed={authed} />
+                <Route path='/machine/schedule/:employeeId/:machineId' component={SingleMachineSchedulePage} authed={authed} />
                 <Route path='/schedule/:employeeId' component={EmployeeSchedule} authed={authed} />
                 <Route path='/history/:employeeId' component={EmployeeHistory} authed={authed} />
                 <Redirect from='*' to='/home' />

@@ -19,5 +19,10 @@ const getMachineInfoByEmployeeId = (employeeId, machineId) => new Promise((resol
   .then(response => resolve(response.data))
   .catch(error => reject(error));
 });
+const getMachineScheduleByEmployeeId = (employeeId, machineId) => new Promise((resolve, reject) => {
+  axios.get(`${baseUrl}/machines/schedule/${employeeId}/${machineId}`)
+  .then(response => resolve(response.data))
+  .catch(error => reject(error));
+});
 
-export default {getAllMachines, getMachinesByEmployeeId, getMachineInfoByEmployeeId};
+export default {getAllMachines, getMachinesByEmployeeId, getMachineInfoByEmployeeId, getMachineScheduleByEmployeeId};
