@@ -24,6 +24,7 @@ class EmployeeSchedule extends React.Component {
       return <EmployeeScheduleTable key={machine.Id} machine={machine} />;
     })
 
+    if (machines === !null) {
     return (
       <div className="EmployeeSchedule">
         <h1 className="mb-5">Employee Schedule</h1>
@@ -31,8 +32,8 @@ class EmployeeSchedule extends React.Component {
           <table className="table">
             <thead className="thead-dark">
               <tr>
-                <th scope="col-1">Machine</th>
-                <th scope="col-5">Date</th>
+                <th scope="col">Machine</th>
+                <th scope="col">Date</th>
                 <th scope="col">Details</th>
               </tr>
             </thead>
@@ -43,6 +44,14 @@ class EmployeeSchedule extends React.Component {
         </div>
       </div>
     );
+    } else {
+      return (
+        <div className="EmployeeSchedule">
+          <h1 className="mb-5">Employee Schedule</h1>
+          <h3>You are not on the schedule.</h3>
+        </div>
+      )
+    }
   }
 }
 

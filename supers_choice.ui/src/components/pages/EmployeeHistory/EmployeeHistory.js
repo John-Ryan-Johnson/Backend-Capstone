@@ -32,8 +32,8 @@ class EmployeeHistory extends React.Component {
           <table className="table">
             <thead className="thead-dark">
               <tr>
-                <th scope="col-1">Machine</th>
-                <th scope="col-5">Date</th>
+                <th scope="col">Machine</th>
+                <th scope="col">Date</th>
                 <th scope="col">Details</th>
               </tr>
             </thead>
