@@ -1,4 +1,5 @@
 import React from 'react';
+import Moment from 'react-moment';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import './SingleMachineSchedulePage.scss';
 import machinesData from '../../../helpers/data/machinesData';
@@ -19,12 +20,13 @@ class SingleMachineSchedulePage extends React.Component {
   render() {
     const { machine } = this.state;
 
+    if (machine) {
     return (
       <div className="SingleMachineSchedulePage mt-5">
         <Form>
           <FormGroup>
             <h1 className="name mt-5">{machine.name}</h1>
-            <h3 className="date mt-3 mb-3">{machine.date}</h3>
+            <h3 className="date mt-3 mb-3"><Moment format="MM/DD/YYYY">{machine.date}</Moment></h3>
             <h5 className="name mb-3">Operator: {machine.firstname} {machine.lastname}</h5>
             <Label for="runtime">Runtime</Label>
             <Input className="text-center" type="text" name="runtime" id="runtime" placeholder="0" />
@@ -58,6 +60,10 @@ class SingleMachineSchedulePage extends React.Component {
         </Form>
       </div>
     );
+    } else {
+      return ( <h3>You are not on the schedule.</h3>
+        )
+    }
   }
 }
 
