@@ -23,10 +23,12 @@ namespace Supers_Choice.Data
                                ,[isDeleted]
                                ,[isRunning]
                                ,[Date]
-                                [downtimeCodeId])
+                               ,[downtimeCodeId]
+                               ,[machineDetailId]
+                               ,[isComplete])
                         Output inserted.id
                         VALUES
-                               (@name,@employeeId,@isDeleted,@isRunning,@Date,@downtimeCodeId)";
+                               (@name,@employeeId,@isDeleted,@isRunning,@Date,@downtimeCodeId,@machineDetailId,@isComplete)";
 
             using var db = new SqlConnection(_connectionString);
 
