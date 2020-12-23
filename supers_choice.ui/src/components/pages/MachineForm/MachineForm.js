@@ -1,29 +1,47 @@
 import React from 'react';
 import Moment from 'react-moment';
+import { Form, FormGroup, Label, Input } from 'reactstrap';
 import './MachineForm.scss';
-import machinesData from '../../../helpers/data/machinesData';
+import employeesData from '../../../helpers/data/employeesData';
 
 
 class MachineForm extends React.Component {
   state = {
-    machine: {},
+    machine: this.props.match.params,
     employees: [],
   }
 
-  componentDidMount() {
-    const { machineId } = this.props.match.params;
-    machinesData.getMachineById(machineId)
-    .then((machine) => this.setState({ machine }))
+  getEmployees = () => {
+    employeesData.getAllEmployees()
+    .then((employees) => this.setState({ employees }))
     .catch((err) => console.error(err));
   }
 
+  componentDidMount() {
+    this.getEmployees();
+  }
+
   render() {
-    const { machine } = this.state;
+    const { machine, employees } = this.state;
+    const buildEmployeeSelectList = employees.map((employee) => {
+      return <option value="employee.id">{employee.firstName} {employee.lastName}</option>
+    });
+
     return (
       <div className="MachineForm mt-5">
         <h1 className="mt-5">Machine Form</h1>
-        <h3 className="mt-3">{machine.name}</h3>
-        <h4 className="mt-3"><Moment format="MM/DD/YYYY">{Date()}</Moment></h4>
+          <Form>
+            <FormGroup>
+              <h3 className="mt-3">{machine.name}</h3>
+              <h4 className="mt-3"><Moment format="MM/DD/YYYY">{Date()}</Moment></h4>
+            </FormGroup>
+            <FormGroup>
+              <Label for="employees">Select Employee</Label>
+              <Input type="select" name="employees" id="employees" multiple>
+                {buildEmployeeSelectList}
+              </Input>
+            </FormGroup>
+          </Form>
       </div>
     );
   }

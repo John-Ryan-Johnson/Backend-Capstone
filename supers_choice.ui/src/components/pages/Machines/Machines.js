@@ -3,6 +3,7 @@ import './Machines.scss';
 import MachinesList from '../../shared/MachinesList/MachinesList';
 import machinesData from '../../../helpers/data/machinesData';
 
+
 class Machines extends React.Component {
   state = {
     machines: [],
