@@ -79,8 +79,23 @@ namespace Supers_Choice.Data
             var parameters = new { eid = employeeId };
 
             var machines = db.Query<Machine>(@"select *
-                                            from Machines
-                                            where employeeId = @eid", parameters);
+                                                from Machines
+                                                where employeeId = @eid
+                                                and Date != convert(varchar(10), getdate(), 101)", parameters);
+
+            return machines.ToList();
+        }
+
+        public List<Machine> GetMachinesByEmployeeIdAndCurrentDate(int employeeId)
+        {
+            using var db = new SqlConnection(_connectionString);
+
+            var parameters = new { eid = employeeId };
+
+            var machines = db.Query<Machine>(@"select *
+                                                from Machines
+                                                where employeeId = @eid
+                                                and Date = convert(varchar(10), getdate(), 101)", parameters);
 
             return machines.ToList();
         }
@@ -89,7 +104,7 @@ namespace Supers_Choice.Data
         {
             using var db = new SqlConnection(_connectionString);
 
-            var query = @"select m.Id as [MachineId], m.name as [Name], convert(varchar(10), m.Date, 101) AS [Date], md.runtime as [Runtime], md.downtime as [Downtime], md.notes as [Notes], dc.codeText as [Codes], e.Id as [EmployeeId], e.firstName as [Firstname], e.lastName as [Lastname]  
+            var query = @"select m.Id as [MachineId], m.name as [Name], m.Date AS [Date], md.runtime as [Runtime], md.downtime as [Downtime], md.notes as [Notes], dc.codeText as [Codes], e.Id as [EmployeeId], e.firstName as [Firstname], e.lastName as [Lastname]  
                             from Machines m
                             join MachineDetails md on md.Id = m.machineDetailId
                             join DowntimeCodes dc on dc.Id = m.downtimeCodeId
@@ -108,7 +123,7 @@ namespace Supers_Choice.Data
         {
             using var db = new SqlConnection(_connectionString);
 
-            var query = @"select m.Id as [machineId], m.name as [MachineName], convert(varchar(10), m.Date, 101) AS [Date], e.Id as [employeeId], e.firstName as [Firstname], e.lastName as [Lastname]
+            var query = @"select m.Id as [machineId], m.name as [Name], m.Date AS [Date], e.Id as [employeeId], e.firstName as [Firstname], e.lastName as [Lastname]
                             from Machines m
                             join Employees e
                             on m.employeeId = e.Id

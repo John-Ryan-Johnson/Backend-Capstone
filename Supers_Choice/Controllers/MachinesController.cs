@@ -59,10 +59,20 @@ namespace Supers_Choice.Controllers
             return Ok();
         }
 
-        [HttpGet("schedule/{employeeId}")]
+        [HttpGet("history/{employeeId}")]
         public IActionResult GetMachineByEmployeeId(int employeeId)
         {
             var machines = _repo.GetMachinesByEmployeeId(employeeId);
+
+            if (machines == null) return NotFound("No machines found for this employee");
+
+            return Ok(machines);
+        }
+
+        [HttpGet("schedule/{employeeId}")]
+        public IActionResult GetMachineByEmployeeIdAndDate(int employeeId)
+        {
+            var machines = _repo.GetMachinesByEmployeeIdAndCurrentDate(employeeId);
 
             if (machines == null) return NotFound("No machines found for this employee");
 

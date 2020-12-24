@@ -50,18 +50,18 @@ class Register extends React.Component {
     const { user } = this.state;
 
     return (
-      <div className='register w-100'>
+      <div className='register w-100 mt-5'>
         <div id='register-form'>
-          <h1 className='text-center'>Register</h1>
+          <h1 className='text-center mt-5'>Sign Up Here</h1>
           <form className='form-horizontal col-sm-6 col-sm-offset-3 mx-auto'>
-            <div className='form-group'>
+            <div className='form-group mt-5'>
               <label htmlFor='inputEmail' className='col-sm-4 control-label'>
                 Email:
               </label>
               <div className='col-sm-8'>
                 <input
                   type='email'
-                  className='form-control'
+                  className='form-control offset-3'
                   id='inputEmail'
                   placeholder='Email'
                   value={user.email}
@@ -76,7 +76,7 @@ class Register extends React.Component {
               <div className='col-sm-8'>
                 <input
                   type='password'
-                  className='form-control'
+                  className='form-control offset-3'
                   id='inputPassword'
                   placeholder='Password'
                   value={user.password}
@@ -94,7 +94,7 @@ class Register extends React.Component {
               <div className='col-sm-8'>
                 <input
                   type='text'
-                  className='form-control'
+                  className='form-control offset-3'
                   id='inputFirstName'
                   placeholder='First Name'
                   value={user.firstName}
@@ -109,7 +109,7 @@ class Register extends React.Component {
               <div className='col-sm-8'>
                 <input
                   type='text'
-                  className='form-control'
+                  className='form-control offset-3'
                   id='inputLastName'
                   placeholder='Last Name'
                   value={user.lastName}
@@ -121,7 +121,7 @@ class Register extends React.Component {
               <div className='col-sm-12'>
                 <button
                   type='submit'
-                  className='btn btn-default col-xs-12'
+                  className='btn btn-dark col-xs-12'
                   onClick={this.registerClickEvent}
                 >
                   Register
