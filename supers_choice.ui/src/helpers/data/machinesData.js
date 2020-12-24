@@ -9,6 +9,12 @@ const getAllMachines = () => new Promise((resolve, reject) => {
 });
 
 const getMachinesByEmployeeId = (employeeId) => new Promise((resolve, reject) => {
+  axios.get(`${baseUrl}/machines/history/${employeeId}`)
+  .then(response => resolve(response.data))
+  .catch(error => reject(error));
+});
+
+const getMachinesByEmployeeIdAndTodaysDate = (employeeId) => new Promise((resolve, reject) => {
   axios.get(`${baseUrl}/machines/schedule/${employeeId}`)
   .then(response => resolve(response.data))
   .catch(error => reject(error));
@@ -25,4 +31,4 @@ const getMachineScheduleByEmployeeId = (employeeId, machineId) => new Promise((r
   .catch(error => reject(error));
 });
 
-export default {getAllMachines, getMachinesByEmployeeId, getMachineInfoByEmployeeId, getMachineScheduleByEmployeeId};
+export default {getAllMachines, getMachinesByEmployeeId, getMachinesByEmployeeIdAndTodaysDate,getMachineInfoByEmployeeId, getMachineScheduleByEmployeeId };

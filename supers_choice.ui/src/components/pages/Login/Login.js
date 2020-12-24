@@ -43,7 +43,7 @@ class Login extends React.Component {
     const { user } = this.state;
 
     return (
-      <div className='Login w-100'>
+      <div className='Login w-100 mt-5'>
         <form className='form-horizontal col-sm-6 mx-auto mt-5'>
           <div className='form-group justify-content-center'>
             <label
@@ -79,14 +79,14 @@ class Login extends React.Component {
           </div>
           <div className='form-group'>
             <div className='col-sm-12 text-center'>
-              <Link to='/register'>Need to Register?</Link>
+              <Link className="signUp text-white" to='/register'>Need to Register?</Link>
             </div>
           </div>
           <div className='form-group'>
             <div className='col-sm-12'>
               <button
                 type='submit'
-                className='btn btn-default view col-xs-12'
+                className='btn btn-dark view col-xs-12'
                 onClick={this.loginClickEvent}
               >
                 Login

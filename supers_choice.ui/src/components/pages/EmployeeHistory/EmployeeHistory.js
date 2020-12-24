@@ -10,7 +10,6 @@ class EmployeeHistory extends React.Component {
 
   getIdThenGetMachines = () => {
     const employeeId = this.props.match.params.employeeId;
-    console.log(employeeId);
     machinesData.getMachinesByEmployeeId(employeeId)
     .then(machines => this.setState({ machines }))
   }

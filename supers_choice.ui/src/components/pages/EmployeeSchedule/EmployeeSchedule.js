@@ -10,7 +10,7 @@ class EmployeeSchedule extends React.Component {
 
   getIdThenGetMachines = () => {
     const employeeId = this.props.match.params.employeeId;
-    machinesData.getMachinesByEmployeeId(employeeId)
+    machinesData.getMachinesByEmployeeIdAndTodaysDate(employeeId)
     .then(machines => this.setState({ machines }))
   }
 
@@ -24,7 +24,6 @@ class EmployeeSchedule extends React.Component {
       return <EmployeeScheduleTable key={machine.Id} machine={machine} />;
     })
 
-    if (machines === !null) {
     return (
       <div className="EmployeeSchedule">
         <h1 className="mb-5">Employee Schedule</h1>
@@ -44,14 +43,6 @@ class EmployeeSchedule extends React.Component {
         </div>
       </div>
     );
-    } else {
-      return (
-        <div className="EmployeeSchedule">
-          <h1 className="mb-5">Employee Schedule</h1>
-          <h3>You are not on the schedule.</h3>
-        </div>
-      )
-    }
   }
 }
 

@@ -3,6 +3,7 @@ import './Machines.scss';
 import MachinesList from '../../shared/MachinesList/MachinesList';
 import machinesData from '../../../helpers/data/machinesData';
 
+
 class Machines extends React.Component {
   state = {
     machines: [],
@@ -25,7 +26,7 @@ class Machines extends React.Component {
     });
 
     return (
-      <div className="Machines">
+      <div className="Machines mb-5">
         <h1>Machines</h1>
         <div className="d-flex flex-wrap">
           <ul className="list-group">
