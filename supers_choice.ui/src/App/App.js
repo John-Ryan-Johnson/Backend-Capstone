@@ -60,7 +60,7 @@ class App extends React.Component {
                 <Route path='/home' component={Home} authed={authed} />
                 <Route path='/employees' component={Employees} authed={authed} />
                 <Route path='/machines' component={Machines} authed={authed} />
-                <Route path='/machineForm/:machineId' component={MachineForm} authed={authed} />
+                <Route path='/machineForm/:machineName/:machineId' component={MachineForm} authed={authed} />
                 <Route path='/machine/info/:employeeId/:machineId' component={SingleMachineHistoryPage} authed={authed} />
                 <Route path='/machine/schedule/:employeeId/:machineId' component={SingleMachineSchedulePage} authed={authed} />
                 <Route path='/schedule/:employeeId' component={EmployeeSchedule} authed={authed} />

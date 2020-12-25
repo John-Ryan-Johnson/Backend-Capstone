@@ -11,6 +11,7 @@ class MachineForm extends React.Component {
     employees: [],
   }
 
+
   getEmployees = () => {
     employeesData.getAllEmployees()
     .then((employees) => this.setState({ employees }))
@@ -32,7 +33,7 @@ class MachineForm extends React.Component {
         <h1 className="mt-5">Machine Form</h1>
           <Form>
             <FormGroup>
-              <h3 className="mt-3">{machine.name}</h3>
+              <h3 className="mt-3">{machine.machineName}</h3>
               <h4 className="mt-3"><Moment format="MM/DD/YYYY">{Date()}</Moment></h4>
             </FormGroup>
             <FormGroup>
