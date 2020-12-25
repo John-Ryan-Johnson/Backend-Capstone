@@ -10,7 +10,7 @@ class MachinesList extends React.Component {
 
   render() {
     const { machine } = this.props;
-    const machineFormLink = `/machineForm/${machine.id}`
+    const machineFormLink = `/machineForm/${machine.name}/${machine.id}`
     return (
       <div className="MachinesList">
         <li className="list-group-item">
