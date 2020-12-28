@@ -15,8 +15,7 @@ class Login extends React.Component {
   loginClickEvent = (e) => {
     const { user } = this.state;
     e.preventDefault();
-    authRequests
-      .loginUser(user)
+    authRequests.loginUser(user)
       .then(() => {
         this.props.history.push('/home');
       })

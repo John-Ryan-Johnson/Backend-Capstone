@@ -16,8 +16,7 @@ class Register extends React.Component {
   registerClickEvent = (e) => {
     const { user } = this.state;
     e.preventDefault();
-    authRequests
-      .registerUser(user)
+    authRequests.registerUser(user)
       .then(() => this.props.history.push('/login'))
       .catch((err) => console.error('cant register', err));
   };

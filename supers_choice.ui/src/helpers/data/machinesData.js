@@ -31,4 +31,6 @@ const getMachineScheduleByEmployeeId = (employeeId, machineId) => new Promise((r
   .catch(error => reject(error));
 });
 
-export default {getAllMachines, getMachinesByEmployeeId, getMachinesByEmployeeIdAndTodaysDate,getMachineInfoByEmployeeId, getMachineScheduleByEmployeeId };
+const postMachineRecord = (newMachineRecord) => axios.post(`${baseUrl}/machines`, newMachineRecord);
+
+export default {getAllMachines, getMachinesByEmployeeId, getMachinesByEmployeeIdAndTodaysDate,getMachineInfoByEmployeeId, getMachineScheduleByEmployeeId, postMachineRecord };
