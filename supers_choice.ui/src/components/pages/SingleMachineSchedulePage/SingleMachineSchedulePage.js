@@ -2,7 +2,7 @@ import React from 'react';
 import Moment from 'react-moment';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import './SingleMachineSchedulePage.scss';
-import machinesData from '../../../helpers/data/machinesData';
+import machineAssignmentsData from '../../../helpers/data/machineAssignmentsData';
 
 class SingleMachineSchedulePage extends React.Component {
   state = {
@@ -12,7 +12,7 @@ class SingleMachineSchedulePage extends React.Component {
   componentDidMount() {
     const employeeId = this.props.match.params.employeeId;
     const machineId = this.props.match.params.machineId;
-    machinesData.getMachineScheduleByEmployeeId(employeeId, machineId)
+    machineAssignmentsData.getMachineAssignmentScheduleByEmployeeIdAndMachineId(employeeId, machineId)
     .then((response) => this.setState({ machine: response }))
     .catch((err) => console.error(err));
   }

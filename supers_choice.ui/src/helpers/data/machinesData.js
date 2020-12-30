@@ -8,29 +8,4 @@ const getAllMachines = () => new Promise((resolve, reject) => {
   .catch(error => reject(error));
 });
 
-const getMachinesByEmployeeId = (employeeId) => new Promise((resolve, reject) => {
-  axios.get(`${baseUrl}/machines/history/${employeeId}`)
-  .then(response => resolve(response.data))
-  .catch(error => reject(error));
-});
-
-const getMachinesByEmployeeIdAndTodaysDate = (employeeId) => new Promise((resolve, reject) => {
-  axios.get(`${baseUrl}/machines/schedule/${employeeId}`)
-  .then(response => resolve(response.data))
-  .catch(error => reject(error));
-});
-
-const getMachineInfoByEmployeeId = (employeeId, machineId) => new Promise((resolve, reject) => {
-  axios.get(`${baseUrl}/machines/info/${employeeId}/${machineId}`)
-  .then(response => resolve(response.data))
-  .catch(error => reject(error));
-});
-const getMachineScheduleByEmployeeId = (employeeId, machineId) => new Promise((resolve, reject) => {
-  axios.get(`${baseUrl}/machines/schedule/${employeeId}/${machineId}`)
-  .then(response => resolve(response.data))
-  .catch(error => reject(error));
-});
-
-const postMachineRecord = (newMachineRecord) => axios.post(`${baseUrl}/machines`, newMachineRecord);
-
-export default {getAllMachines, getMachinesByEmployeeId, getMachinesByEmployeeIdAndTodaysDate,getMachineInfoByEmployeeId, getMachineScheduleByEmployeeId, postMachineRecord };
+export default { getAllMachines };

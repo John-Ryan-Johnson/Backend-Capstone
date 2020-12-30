@@ -1,17 +1,17 @@
 import React from 'react';
 import './EmployeeHistory.scss';
 import EmployeeHistoryTable from '../../shared/EmployeeHistoryTable/EmployeeHistoryTable';
-import machinesData from '../../../helpers/data/machinesData';
+import machineAssignmentsData from '../../../helpers/data/machineAssignmentsData';
 
 class EmployeeHistory extends React.Component {
   state = {
-    machines: [],
+    machineAssignments: [],
   }
 
   getIdThenGetMachines = () => {
     const employeeId = this.props.match.params.employeeId;
-    machinesData.getMachinesByEmployeeId(employeeId)
-    .then(machines => this.setState({ machines }))
+    machineAssignmentsData.getMachineAssignmentsByEmployeeId(employeeId)
+    .then(machineAssignments => this.setState({ machineAssignments }))
   }
 
   componentDidMount() {
@@ -19,9 +19,9 @@ class EmployeeHistory extends React.Component {
   }
 
   render() {
-    const { machines } = this.state;
-    const buildHistoryTable = () => machines.map((machine) => {
-      return <EmployeeHistoryTable key={machine.Id} machine={machine} />;
+    const { machineAssignments } = this.state;
+    const buildHistoryTable = () => machineAssignments.map((machineAssignment) => {
+      return <EmployeeHistoryTable key={machineAssignment.Id} machineAssignment={machineAssignment} />;
     })
 
     return (

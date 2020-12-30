@@ -4,8 +4,6 @@ import { Form, FormGroup, Label, Input, Button } from 'reactstrap';
 import './MachineForm.scss';
 import employeesData from '../../../helpers/data/employeesData';
 
-
-
 class MachineForm extends React.Component {
   state = {
     machine: this.props.match.params,
