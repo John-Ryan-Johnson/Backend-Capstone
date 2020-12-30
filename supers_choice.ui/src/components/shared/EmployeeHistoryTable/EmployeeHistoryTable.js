@@ -5,20 +5,20 @@ import { Link } from 'react-router-dom';
 
 class EmployeeHistoryTable extends React.Component {
   render() {
-    const { machine } = this.props;
+    const { machineAssignment } = this.props;
 
-    if (machine) {
+    if (machineAssignment) {
       return (
         <>
           <tr>
-            <td>{machine.name}</td>
+            <td>{machineAssignment.name}</td>
             <td>
-              <Moment format='MM/DD/YYYY'>{machine.date}</Moment>
+              <Moment format='MM/DD/YYYY'>{machineAssignment.date}</Moment>
             </td>
             <td>
               <Link
                 className='machineLink'
-                to={`/machine/info/${machine.employeeId}/${machine.id}`}
+                to={`/machine/info/${machineAssignment.employeeId}/${machineAssignment.machineId}`}
               >
                 View
               </Link>

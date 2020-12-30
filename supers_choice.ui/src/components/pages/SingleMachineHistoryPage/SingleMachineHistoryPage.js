@@ -1,7 +1,7 @@
 import React from 'react';
 import Moment from 'react-moment';
 import './SingleMachineHistoryPage.scss';
-import machinesData from '../../../helpers/data/machinesData';
+import machineAssignmentsData from '../../../helpers/data/machineAssignmentsData';
 
 
 class SingleMachineHistoryPage extends React.Component {
@@ -13,7 +13,7 @@ class SingleMachineHistoryPage extends React.Component {
 componentDidMount() {
   const employeeId = this.props.match.params.employeeId;
   const machineId = this.props.match.params.machineId;
-  machinesData.getMachineInfoByEmployeeId(employeeId, machineId)
+  machineAssignmentsData.getMachineAssignmentInfoByEmployeeIdAndMachineId(employeeId, machineId)
   .then((response) => this.setState({ machine: response }))
   .catch((err) => console.error(err));
 }

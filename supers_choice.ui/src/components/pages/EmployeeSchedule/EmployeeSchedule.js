@@ -1,7 +1,7 @@
 import React from 'react';
 import './EmployeeSchedule.scss';
 import EmployeeScheduleTable from '../../shared/EmployeeScheduleTable/EmployeeScheduleTable';
-import machinesData from '../../../helpers/data/machinesData';
+import machineAssignmentsData from '../../../helpers/data/machineAssignmentsData';
 
 class EmployeeSchedule extends React.Component {
   state = {
@@ -10,9 +10,10 @@ class EmployeeSchedule extends React.Component {
 
   getIdThenGetMachines = () => {
     const employeeId = this.props.match.params.employeeId;
-    machinesData.getMachinesByEmployeeIdAndTodaysDate(employeeId)
+    machineAssignmentsData.getMachineAssignmentsByEmployeeIdAndTodaysDate(employeeId)
     .then(machines => this.setState({ machines }))
   }
+
 
   componentDidMount() {
     this.getIdThenGetMachines();
