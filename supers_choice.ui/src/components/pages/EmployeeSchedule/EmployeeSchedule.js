@@ -9,7 +9,7 @@ class EmployeeSchedule extends React.Component {
   }
 
   getIdThenGetMachines = () => {
-    const employeeId = this.props.match.params.employeeId;
+    const employeeId = this.props.match.params.employeeId * 1;
     machineAssignmentsData.getMachineAssignmentsByEmployeeIdAndTodaysDate(employeeId)
     .then(machines => this.setState({ machines }))
   }

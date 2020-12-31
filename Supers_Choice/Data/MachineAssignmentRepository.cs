@@ -16,7 +16,7 @@ namespace Supers_Choice.Data
             _connectionString = configuration.GetConnectionString("SupersChoice");
         }
 
-        public void AddEmployeeToMachine(MachineAssignment employeeToAdd)
+        public int AddEmployeeToMachine(MachineAssignment machineAssignment)
         {
             var sql = @"INSERT INTO [dbo].[MachineAssignments]
                                ([machineId]
@@ -28,13 +28,19 @@ namespace Supers_Choice.Data
                                ,[machineDetailId])
                         Output inserted.id
                         VALUES
-                               (@machineId,@employeeId,@isDeleted,@isRunning,@Date,@downtimeCodeId,@machineDetailId)";
+                               (@machineId,@employeeId,0,0,getDate(),null,null)";
+
+            var parameters = new
+            {
+                machineId = machineAssignment.MachineId,
+                employeeId = machineAssignment.EmployeeId,
+            };
 
             using var db = new SqlConnection(_connectionString);
 
-            var newId = db.ExecuteScalar<int>(sql, employeeToAdd);
+            var newId = db.ExecuteScalar<int>(sql, parameters);
 
-            employeeToAdd.Id = newId;
+            return newId;
         }
 
         public List<MachineAssignment> GetAllMachineAssignments()
@@ -94,16 +100,24 @@ namespace Supers_Choice.Data
             return machines.ToList();
         }
 
-        public List<MachineAssignment> GetMachineAssignmentsByEmployeeIdAndCurrentDate(int employeeId)
+        public List<MachineInfo> GetMachineAssignmentsByEmployeeIdAndCurrentDate(int employeeId)
         {
             using var db = new SqlConnection(_connectionString);
 
             var parameters = new { eid = employeeId };
 
-            var machines = db.Query<MachineAssignment>(@"select *
-                                                        from MachineAssignments
-                                                        where employeeId = @eid
-                                                        and Date = convert(varchar(10), getdate(), 101)", parameters);
+            var machines = db.Query<MachineInfo>(@"select ma.machineId as [MachineId], m.Name as [Name], ma.Date as [Date], md.runtime as [Runtime], md.downtime as [Downtime], md.notes as [Notes], dc.codeText as [Codes], e.Id as [EmployeeId], e.firstName as [Firstname], e.lastName as [Lastname]
+                                                    from MachineAssignments ma
+                                                    join Machines m
+                                                    on ma.machineId = m.Id
+                                                    left join MachineDetails md
+                                                    on ma.machineDetailId = md.Id
+                                                    left join DowntimeCodes dc
+                                                    on ma.downtimeCodeId = dc.Id
+                                                    join Employees e
+                                                    on ma.employeeId = e.Id
+                                                    where ma.employeeId = @eid
+                                                    and Date = convert(varchar(10), getdate(), 101)", parameters);
 
             return machines.ToList();
         }
@@ -115,8 +129,8 @@ namespace Supers_Choice.Data
             var query = @"select ma.machineId as [MachineId], m.name as [Name], ma.Date AS [Date], md.runtime as [Runtime], md.downtime as [Downtime], md.notes as [Notes], dc.codeText as [Codes], e.Id as [EmployeeId], e.firstName as [Firstname], e.lastName as [Lastname]  
                             from MachineAssignments ma
                             join Machines m on ma.machineId = m.Id
-                            join MachineDetails md on md.Id = ma.machineDetailId
-                            join DowntimeCodes dc on dc.Id = ma.downtimeCodeId
+                            left join MachineDetails md on md.Id = ma.machineDetailId
+                            left join DowntimeCodes dc on dc.Id = ma.downtimeCodeId
                             join Employees e on e.Id = ma.employeeId
                             where e.Id = @eid
                             and m.Id = @mid";
