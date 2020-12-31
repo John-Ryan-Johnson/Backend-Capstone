@@ -1,6 +1,6 @@
 import React from 'react';
 import './EmployeesList.scss';
-import { Link, withRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import employeeShape from '../../../helpers/propz/employeeShape';
 
 class EmployeesList extends React.Component {
@@ -21,4 +21,4 @@ class EmployeesList extends React.Component {
   }
 }
 
-export default withRouter(EmployeesList);
+export default EmployeesList;

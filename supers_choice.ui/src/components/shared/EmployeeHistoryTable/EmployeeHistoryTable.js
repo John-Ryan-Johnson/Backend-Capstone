@@ -7,8 +7,7 @@ class EmployeeHistoryTable extends React.Component {
   render() {
     const { machineAssignment } = this.props;
 
-    if (machineAssignment) {
-      return (
+    return (
         <>
           <tr>
             <td>{machineAssignment.name}</td>
@@ -18,7 +17,7 @@ class EmployeeHistoryTable extends React.Component {
             <td>
               <Link
                 className='machineLink'
-                to={`/machine/info/${machineAssignment.employeeId}/${machineAssignment.machineId}`}
+                to={`/machine/history/${machineAssignment.employeeId}/${machineAssignment.machineId}`}
               >
                 View
               </Link>
@@ -26,9 +25,6 @@ class EmployeeHistoryTable extends React.Component {
           </tr>
         </>
       );
-    } else {
-      return <h3>You don't have a history.</h3>;
-    }
   }
 }
 

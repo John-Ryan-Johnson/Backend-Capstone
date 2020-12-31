@@ -18,7 +18,7 @@ class EmployeeScheduleTable extends React.Component {
             <td>
               <Link
                 className='machineLink'
-                to={`/machine/schedule/${machine.employeeId}/${machine.id}`}
+                to={`/machine/schedule/${machine.employeeId}/${machine.machineId}`}
               >
                 View
               </Link>
