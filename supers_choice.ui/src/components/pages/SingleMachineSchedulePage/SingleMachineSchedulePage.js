@@ -3,10 +3,18 @@ import Moment from 'react-moment';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import './SingleMachineSchedulePage.scss';
 import machineAssignmentsData from '../../../helpers/data/machineAssignmentsData';
+import downtimeCodesData from '../../../helpers/data/downtimeCodesData';
 
 class SingleMachineSchedulePage extends React.Component {
   state = {
     machine: {},
+    downtimeCodes: [],
+  }
+
+  getDowntimeCodes = () => {
+    downtimeCodesData.getAllDowntimeCodes()
+    .then((downtimeCodes) => this.setState({ downtimeCodes }))
+    .catch((err) => console.error(err));
   }
 
   componentDidMount() {
@@ -15,10 +23,14 @@ class SingleMachineSchedulePage extends React.Component {
     machineAssignmentsData.getMachineAssignmentScheduleByEmployeeIdAndMachineId(employeeId, machineId)
     .then((response) => this.setState({ machine: response }))
     .catch((err) => console.error(err));
+    this.getDowntimeCodes();
   }
 
   render() {
-    const { machine } = this.state;
+    const { machine, downtimeCodes } = this.state;
+    const buildCodeSelectList = downtimeCodes.map((downtimeCode) => {
+      return <option value={downtimeCode.id}>{downtimeCode.codeText}</option>
+    });
 
     if (machine) {
     return (
@@ -37,12 +49,8 @@ class SingleMachineSchedulePage extends React.Component {
           </FormGroup>
           <FormGroup>
             <Label for="codes">Select Multiple</Label>
-            <Input type="select" name="codes" id="codes" multiple>
-              <option>1</option>
-              <option>2</option>
-              <option>3</option>
-              <option>4</option>
-              <option>5</option>
+            <Input type="select" name="codes" id="codes">
+              {buildCodeSelectList}
             </Input>
           </FormGroup>
           <FormGroup>
@@ -57,6 +65,7 @@ class SingleMachineSchedulePage extends React.Component {
             <Button className="bottom-left mr-5 btn btn-danger">Stop</Button>
             <Button className="bottom-right ml-5 btn btn-warning">Reset</Button>
           </div>
+          <Button className="btn btn-dark mt-5">Save</Button>
         </Form>
       </div>
     );
