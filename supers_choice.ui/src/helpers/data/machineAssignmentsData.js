@@ -14,8 +14,8 @@ const getMachineAssignmentsByEmployeeIdAndTodaysDate = (employeeId) => new Promi
   .catch(error => reject(error));
 });
 
-const getMachineAssignmentInfoByEmployeeIdAndMachineId = (employeeId, machineId) => new Promise((resolve, reject) => {
-  axios.get(`${baseUrl}/machineAssignments/info/${employeeId}/${machineId}`)
+const getMachineAssignmentInfoByEmployeeIdAndMachineIdAndMachineAssignmentId = (employeeId, machineId, machineAssignmentId) => new Promise((resolve, reject) => {
+  axios.get(`${baseUrl}/machineAssignments/info/${employeeId}/${machineId}/${machineAssignmentId}`)
   .then(response => resolve(response.data))
   .catch(error => reject(error));
 });
@@ -28,4 +28,4 @@ const getMachineAssignmentScheduleByEmployeeIdAndMachineId = (employeeId, machin
 
 const postMachineAssignment = (newMachineAssignment) => axios.post(`${baseUrl}/machineAssignments`, newMachineAssignment);
 
-export default { getMachineAssignmentsByEmployeeId, getMachineAssignmentsByEmployeeIdAndTodaysDate, getMachineAssignmentInfoByEmployeeIdAndMachineId, getMachineAssignmentScheduleByEmployeeIdAndMachineId, postMachineAssignment }
+export default { getMachineAssignmentsByEmployeeId, getMachineAssignmentsByEmployeeIdAndTodaysDate, getMachineAssignmentInfoByEmployeeIdAndMachineIdAndMachineAssignmentId, getMachineAssignmentScheduleByEmployeeIdAndMachineId, postMachineAssignment }
