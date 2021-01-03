@@ -13,7 +13,8 @@ class SingleMachineHistoryPage extends React.Component {
 componentDidMount() {
   const employeeId = this.props.match.params.employeeId;
   const machineId = this.props.match.params.machineId;
-  machineAssignmentsData.getMachineAssignmentInfoByEmployeeIdAndMachineId(employeeId, machineId)
+  const machineAssignmentId = this.props.match.params.machineAssignmentId;
+  machineAssignmentsData.getMachineAssignmentInfoByEmployeeIdAndMachineIdAndMachineAssignmentId(employeeId, machineId, machineAssignmentId)
   .then((response) => this.setState({ machine: response }))
   .catch((err) => console.error(err));
 }

@@ -5,6 +5,7 @@ namespace Supers_Choice.Models
 {
     public class MachineInfo
     {
+        public int MachineAssignmentId { get; set; }
         public int MachineId { get; set; }
         public string  Name { get; set; }
         public DateTime Date { get; set; }

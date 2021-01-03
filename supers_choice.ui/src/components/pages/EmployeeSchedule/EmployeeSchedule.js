@@ -5,13 +5,13 @@ import machineAssignmentsData from '../../../helpers/data/machineAssignmentsData
 
 class EmployeeSchedule extends React.Component {
   state = {
-    machines: [],
+    machineAssignments: [],
   }
 
   getIdThenGetMachines = () => {
     const employeeId = this.props.match.params.employeeId * 1;
     machineAssignmentsData.getMachineAssignmentsByEmployeeIdAndTodaysDate(employeeId)
-    .then(machines => this.setState({ machines }))
+    .then(machineAssignments => this.setState({ machineAssignments }))
   }
 
 
@@ -20,9 +20,9 @@ class EmployeeSchedule extends React.Component {
   }
 
   render() {
-    const { machines } = this.state;
-    const buildScheduleTable = () => machines.map((machine) => {
-      return <EmployeeScheduleTable key={machine.Id} machine={machine} />;
+    const { machineAssignments } = this.state;
+    const buildScheduleTable = () => machineAssignments.map((machineAssignment) => {
+      return <EmployeeScheduleTable key={machineAssignment.Id} machineAssignment={machineAssignment} />;
     })
 
     return (

@@ -10,11 +10,17 @@ class EmployeesList extends React.Component {
 
   render() {
     const { employee } = this.props;
-    const singleEmployeeLink = `/schedule/${employee.id}`;
+    const scheduleLink = `/schedule/${employee.id}`;
+    const historyLink = `/history/${employee.id}`;
+
     return (
       <div className="EmployeesList">
         <li className="list-group-item">
-          <Link to={singleEmployeeLink}><h3 className="item-name">{employee.firstName} {employee.lastName}</h3></Link>
+          <h3 className="item-name">{employee.firstName} {employee.lastName}</h3>
+          <div className="linkContainer mt-3">
+            <Link to={scheduleLink}><i class="fas fa-calendar-alt fa-md"></i></Link>
+            <Link to={historyLink}><i className="fas fa-history fa-md"></i></Link>
+          </div>
         </li>
       </div>
     );

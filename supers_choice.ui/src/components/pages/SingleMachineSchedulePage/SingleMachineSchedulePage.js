@@ -7,7 +7,6 @@ import downtimeCodesData from '../../../helpers/data/downtimeCodesData';
 
 class SingleMachineSchedulePage extends React.Component {
   state = {
-    machine: {},
     downtimeCodes: [],
   }
 
@@ -38,7 +37,7 @@ class SingleMachineSchedulePage extends React.Component {
         <Form>
           <FormGroup>
             <h1 className="name mt-5">{machine.name}</h1>
-            <h3 className="date mt-3 mb-3"><Moment format="MM/DD/YYYY">{machine.date}</Moment></h3>
+            <h3 className=" form-control date mt-3 mb-3"><Moment format="MM/DD/YYYY"></Moment></h3>
             <h5 className="name mb-3">Operator: {machine.firstname} {machine.lastname}</h5>
             <Label for="runtime">Runtime</Label>
             <Input className="text-center" type="text" name="runtime" id="runtime" placeholder="0" />

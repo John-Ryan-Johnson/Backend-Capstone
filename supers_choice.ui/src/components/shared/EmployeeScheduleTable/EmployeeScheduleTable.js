@@ -3,32 +3,25 @@ import Moment from 'react-moment';
 import './EmployeeScheduleTable.scss';
 import { Link } from 'react-router-dom';
 
+
 class EmployeeScheduleTable extends React.Component {
   render() {
-    const { machine } = this.props;
+    const { machineAssignment } = this.props;
+    const singleMachineScheduleLink = `/machine/schedule/${machineAssignment.employeeId}/${machineAssignment.machineId}`;
 
-    if (machine) {
-      return (
+    return (
         <>
           <tr>
-            <td>{machine.name}</td>
+            <td>{machineAssignment.name}</td>
             <td>
-              <Moment format='MM/DD/YYYY'>{machine.date}</Moment>
+              <Moment format='MM/DD/YYYY'>{machineAssignment.date}</Moment>
             </td>
             <td>
-              <Link
-                className='machineLink'
-                to={`/machine/schedule/${machine.employeeId}/${machine.machineId}`}
-              >
-                View
-              </Link>
+              <Link className='machineLink' to={singleMachineScheduleLink}>View</Link>
             </td>
           </tr>
         </>
       );
-    } else {
-      return <h3>You are not on the schedule.</h3>;
-    }
   }
 }
 
