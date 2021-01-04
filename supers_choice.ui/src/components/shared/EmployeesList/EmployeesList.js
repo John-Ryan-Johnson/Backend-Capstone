@@ -18,7 +18,7 @@ class EmployeesList extends React.Component {
         <li className="list-group-item">
           <h3 className="item-name">{employee.firstName} {employee.lastName}</h3>
           <div className="linkContainer mt-3">
-            <Link to={scheduleLink}><i class="fas fa-calendar-alt fa-md"></i></Link>
+            <Link to={scheduleLink}><i className="fas fa-calendar-alt fa-md"></i></Link>
             <Link to={historyLink}><i className="fas fa-history fa-md"></i></Link>
           </div>
         </li>

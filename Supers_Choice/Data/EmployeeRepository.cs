@@ -44,6 +44,7 @@ namespace Supers_Choice.Data
             using var db = new SqlConnection(_connectionString);
 
             var employees = db.Query<Employee>(@"select * from employees
+                                                where isDeleted = 0
                                                 order by firstName asc");
 
             return employees.ToList();

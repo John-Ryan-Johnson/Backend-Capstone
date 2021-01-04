@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Supers_Choice.Data;
+using Supers_Choice.Models;
 
 namespace Supers_Choice.Controllers
 {
@@ -37,17 +38,13 @@ namespace Supers_Choice.Controllers
             return Ok(machineDetail);
         }
 
-        [HttpDelete("{id}")]
-        public IActionResult DeleteMachineDetails(int id)
+        [HttpPost]
+        public IActionResult AddMachineDetail(MachineDetailWithDowntimeCode newObj)
         {
-            if (_repo.GetById(id) == null)
-            {
-                return NotFound();
-            }
+            var newMachineDetailId = _repo.AddMachineDetail(newObj);
 
-            _repo.Remove(id);
-
-            return Ok();
+            return Created($"/api/machineDetails/{newMachineDetailId}", newMachineDetailId);
         }
+   
     }
 }

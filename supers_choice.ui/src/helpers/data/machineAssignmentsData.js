@@ -28,4 +28,6 @@ const getMachineAssignmentScheduleByEmployeeIdAndMachineId = (employeeId, machin
 
 const postMachineAssignment = (newMachineAssignment) => axios.post(`${baseUrl}/machineAssignments`, newMachineAssignment);
 
-export default { getMachineAssignmentsByEmployeeId, getMachineAssignmentsByEmployeeIdAndTodaysDate, getMachineAssignmentInfoByEmployeeIdAndMachineIdAndMachineAssignmentId, getMachineAssignmentScheduleByEmployeeIdAndMachineId, postMachineAssignment }
+const removeMachineAssignment = (machineAssignmentId) => axios.delete(`${baseUrl}/machineAssignments/${machineAssignmentId}`);
+
+export default { getMachineAssignmentsByEmployeeId, getMachineAssignmentsByEmployeeIdAndTodaysDate, getMachineAssignmentInfoByEmployeeIdAndMachineIdAndMachineAssignmentId, getMachineAssignmentScheduleByEmployeeIdAndMachineId, postMachineAssignment, removeMachineAssignment }

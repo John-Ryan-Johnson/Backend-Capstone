@@ -67,7 +67,7 @@ namespace Supers_Choice.Data
             return machine;
         }
 
-        public void RemoveMachineAssignmet(int machineId)
+        public void RemoveMachineAssignment(int Id)
         {
             var sql = @"DELETE 
                         FROM [dbo].[MachineAssignments]
@@ -75,7 +75,7 @@ namespace Supers_Choice.Data
 
             using var db = new SqlConnection(_connectionString);
 
-            db.Execute(sql, new { id = machineId });
+            db.Execute(sql, new { id = Id });
         }
 
         public List<MachineInfo> GetMachineAssignmentsByEmployeeId(int employeeId)
