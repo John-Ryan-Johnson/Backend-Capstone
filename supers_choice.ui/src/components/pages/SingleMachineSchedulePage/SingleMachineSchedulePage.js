@@ -13,6 +13,7 @@ class SingleMachineSchedulePage extends React.Component {
     notes: '',
     runtime: 0,
     downtime: 0,
+    downtimeCodeId: 0,
   }
 
   getDowntimeCodes = () => {
@@ -45,17 +46,22 @@ class SingleMachineSchedulePage extends React.Component {
     this.setState({ notes: e.target.value});
   }
 
+  downtimeCodeIdChange = (e) => {
+    e.preventDefault();
+    this.setState({ downtimeCodeId: e.target.value * 1});
+  }
+
 
 
   postMachineDetail = (e) => {
     e.preventDefault();
-    const { machineId, runtime, downtime, notes } = this.state;
+    const { machineId, runtime, downtime, notes, downtimeCodeId } = this.state;
     const newObj = {
       machineAssignmentId: machineId,
       runtime,
       downtime,
       notes,
-      downtimeCode: 2,
+      downtimeCode: downtimeCodeId,
     };
     machineDetailsData.addMachineDetailWithDowntimeCode(newObj)
     .then((response) => {console.error('new obj', newObj)})
@@ -63,9 +69,9 @@ class SingleMachineSchedulePage extends React.Component {
   }
 
   render() {
-    const { machine, downtimeCodes, runtime, downtime, notes } = this.state;
+    const { machine, downtimeCodes, runtime, downtime, notes, downtimeCodeId } = this.state;
     const buildCodeSelectList = downtimeCodes.map((downtimeCode) => {
-      return <option value={downtimeCode.id}>{downtimeCode.codeText}</option>
+      return <option key={downtimeCode.id} value={downtimeCode.id}>{downtimeCode.codeText}</option>
     });
 
     if (machine) {
@@ -103,7 +109,13 @@ class SingleMachineSchedulePage extends React.Component {
           </FormGroup>
           <FormGroup>
             <Label for="codes">Select Multiple</Label>
-            <Input type="select" name="codes" id="codes">
+            <Input
+              type="select"
+              name="codes"
+              id="codes"
+              value = {downtimeCodeId}
+              onChange = {this.downtimeCodeIdChange}
+              >
               {buildCodeSelectList}
             </Input>
           </FormGroup>
