@@ -39,15 +39,38 @@ namespace Supers_Choice.Data
             return machineDetail;
         }
 
-        public void Remove(int machineDetailId)
+        public int AddMachineDetail(MachineDetailWithDowntimeCode obj)
         {
-            var sql = @"DELETE 
-                        FROM [dbo].[MachineDetails]
-                        WHERE Id = @id";
-
             using var db = new SqlConnection(_connectionString);
 
-            db.Execute(sql, new { id = machineDetailId });
+            var sql = @"INSERT INTO [dbo].[MachineDetails]
+                           ([notes]
+                           ,[runtime]
+                           ,[downtime])
+                    output inserted.id
+                     VALUES
+                           (@notes
+                           ,@runtime
+                           ,@downtime)";
+
+            var newMachineDetailId = db.ExecuteScalar<int>(sql, obj);
+
+            var sqlToUpdateAssignment = @"UPDATE [dbo].[MachineAssignments]
+                                           SET [downtimeCodeId] = @downtimeCodeId
+                                              ,[machineDetailId] = @machineDetailId
+                                         WHERE Id = @machineAssignmentId";
+
+            var parameters = new
+            {
+                machineAssignmentId = obj.MachineAssignmentId,
+                downtimeCodeId = obj.DowntimeCode,
+                machineDetailId = newMachineDetailId,
+            };
+
+            var updateMachineAssignment = db.QueryFirstOrDefault<MachineAssignment>(sqlToUpdateAssignment, parameters);
+
+            return newMachineDetailId;
         }
+
     }
 }

@@ -8,4 +8,6 @@ const getAllMachineDetails = () => new Promise((resolve, reject) => {
   .catch(error => reject(error));
 });
 
-export default {getAllMachineDetails};
+const addMachineDetailWithDowntimeCode = (newObj) => axios.post(`${baseUrl}/machineDetails`, newObj);
+
+export default {getAllMachineDetails, addMachineDetailWithDowntimeCode};

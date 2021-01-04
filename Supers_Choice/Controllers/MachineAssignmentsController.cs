@@ -54,7 +54,7 @@ namespace Supers_Choice.Controllers
                 return NotFound();
             }
 
-            _repo.RemoveMachineAssignmet(id);
+            _repo.RemoveMachineAssignment(id);
 
             return Ok();
         }
