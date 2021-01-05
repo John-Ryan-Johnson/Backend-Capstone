@@ -58,6 +58,7 @@ namespace Supers_Choice.Data
             var sqlToUpdateAssignment = @"UPDATE [dbo].[MachineAssignments]
                                            SET [downtimeCodeId] = @downtimeCodeId
                                               ,[machineDetailId] = @machineDetailId
+                                              ,[isCompleted] = @isCompleted
                                          WHERE Id = @machineAssignmentId";
 
             var parameters = new
@@ -65,6 +66,7 @@ namespace Supers_Choice.Data
                 machineAssignmentId = obj.MachineAssignmentId,
                 downtimeCodeId = obj.DowntimeCode,
                 machineDetailId = newMachineDetailId,
+                isCompleted = obj.IsCompleted,
             };
 
             var updateMachineAssignment = db.QueryFirstOrDefault<MachineAssignment>(sqlToUpdateAssignment, parameters);

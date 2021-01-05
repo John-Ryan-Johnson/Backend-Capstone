@@ -35,6 +35,7 @@ class MyNavbar extends React.Component {
 
   logOut = (e) => {
     e.preventDefault();
+    sessionStorage.removeItem('token');
     firebase.auth().signOut()
   }
 
