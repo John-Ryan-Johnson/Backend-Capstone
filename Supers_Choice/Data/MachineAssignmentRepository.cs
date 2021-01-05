@@ -91,7 +91,9 @@ namespace Supers_Choice.Data
                                                     left join DowntimeCodes dc on ma.downtimeCodeId = dc.Id
                                                     join Employees e on ma.employeeId = e.Id
                                                     where ma.employeeId = @eid
-                                                    and Date != convert(varchar(10), getdate(), 101)", parameters);
+                                                    and isCompleted = 1",
+                                                    parameters);
+                                                     
 
             return machines.ToList();
         }
@@ -109,6 +111,7 @@ namespace Supers_Choice.Data
                                                     left join DowntimeCodes dc on ma.downtimeCodeId = dc.Id
                                                     join Employees e on ma.employeeId = e.Id
                                                     where ma.employeeId = @eid
+                                                    and isCompleted = 0
                                                     and Date = convert(varchar(10), getdate(), 101)", parameters);
 
             return machines.ToList();
@@ -139,7 +142,7 @@ namespace Supers_Choice.Data
         {
             using var db = new SqlConnection(_connectionString);
 
-            var query = @"select ma.machineId as [machineId], ma.Date AS [Date], m.name as [Name], e.Id as [employeeId], e.firstName as [Firstname], e.lastName as [Lastname]
+            var query = @"select ma.Id as [MachineAssignmentId], ma.machineId as [machineId], ma.Date AS [Date], m.name as [Name], e.Id as [employeeId], e.firstName as [Firstname], e.lastName as [Lastname]
                             from MachineAssignments ma
                             join Machines m on ma.machineId = m.Id
                             join Employees e on ma.employeeId = e.Id

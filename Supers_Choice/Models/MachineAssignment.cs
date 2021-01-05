@@ -12,5 +12,6 @@ namespace Supers_Choice.Models
         public DateTime Date { get; set; }
         public int DowntimeCodeId { get; set; }
         public int MachineDetailId { get; set; }
+        public bool IsCompleted { get; set; }
     }
 }

@@ -14,5 +14,6 @@ namespace Supers_Choice.Models
         public decimal Downtime { get; set; }
         public int DowntimeCode { get; set; }
         public int MachineAssignmentId { get; set; }
+        public bool IsCompleted { get; set; }
     }
 }
