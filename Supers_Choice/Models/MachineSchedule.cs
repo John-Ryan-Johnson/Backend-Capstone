@@ -11,5 +11,6 @@ namespace Supers_Choice.Models
         public int EmployeeId { get; set; }
         public string Firstname { get; set; }
         public string Lastname { get; set; }
+        public int MachineAssignmentId { get; set; }
     }
 }

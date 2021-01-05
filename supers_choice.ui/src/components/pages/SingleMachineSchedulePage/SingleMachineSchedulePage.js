@@ -14,6 +14,8 @@ class SingleMachineSchedulePage extends React.Component {
     runtime: 0,
     downtime: 0,
     downtimeCodeId: 0,
+    machineAssignmentId: 0,
+    employeeId: this.props.match.params.employeeId * 1,
   }
 
   getDowntimeCodes = () => {
@@ -23,10 +25,9 @@ class SingleMachineSchedulePage extends React.Component {
   }
 
   componentDidMount() {
-    const employeeId = this.props.match.params.employeeId;
-    const { machineId } = this.state;
+    const { machineId, employeeId } = this.state;
     machineAssignmentsData.getMachineAssignmentScheduleByEmployeeIdAndMachineId(employeeId, machineId)
-    .then((response) => this.setState({ machine: response }))
+    .then((response) => this.setState({ machine: response, machineAssignmentId: response.machineAssignmentId }))
     .catch((err) => console.error(err));
     this.getDowntimeCodes();
   }
@@ -55,16 +56,16 @@ class SingleMachineSchedulePage extends React.Component {
 
   postMachineDetail = (e) => {
     e.preventDefault();
-    const { machineId, runtime, downtime, notes, downtimeCodeId } = this.state;
+    const { machineId, runtime, downtime, notes, downtimeCodeId, employeeId, machineAssignmentId } = this.state;
     const newObj = {
-      machineAssignmentId: machineId,
+      machineAssignmentId,
       runtime,
       downtime,
       notes,
       downtimeCode: downtimeCodeId,
     };
     machineDetailsData.addMachineDetailWithDowntimeCode(newObj)
-    .then((response) => {console.error('new obj', newObj)})
+    .then(() => this.props.history.push(`/machine/history/${employeeId}/${machineId}/${machineAssignmentId}`))
     .catch((err) => console.error(err));
   }
 
