@@ -43,15 +43,18 @@ class MyNavbar extends React.Component {
      firebase.auth().onAuthStateChanged((user) => {
       const uid = user.uid;
       console.error(uid);
-      employeesData.getEmployeeByUid()
-      .then((employeeResponse) =>{
-        this.setState({
-        employeeId: employeeResponse.data.id,
-        isSupervisor: employeeResponse.data.isSupervisor,
-      });
-      console.error(employeeResponse.data);
-    })
-    .catch((error) => console.error(error));
+      user.getIdToken()
+        // save the token to the session storage
+          .then((token) => sessionStorage.setItem('token', token))
+          .then(employeesData.getEmployeeByUid)
+          .then((employeeResponse) =>{
+            this.setState({
+              employeeId: employeeResponse.data.id,
+              isSupervisor: employeeResponse.data.isSupervisor,
+            });
+            console.error(employeeResponse.data);
+          })
+          .catch((error) => console.error(error));
   });
 }
 
