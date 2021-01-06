@@ -111,7 +111,6 @@ namespace Supers_Choice.Data
                                                     left join DowntimeCodes dc on ma.downtimeCodeId = dc.Id
                                                     join Employees e on ma.employeeId = e.Id
                                                     where ma.employeeId = @eid
-                                                    and isCompleted = 0
                                                     and Date = convert(varchar(10), getdate(), 101)", parameters);
 
             return machines.ToList();
