@@ -18,9 +18,7 @@ import SingleMachineHistoryPage from '../components/pages/SingleMachineHistoryPa
 import SingleMachineSchedulePage from '../components/pages/SingleMachineSchedulePage/SingleMachineSchedulePage';
 import MachineForm from '../components/pages/MachineForm/MachineForm';
 
-
 fbConnection();
-
 
 class App extends React.Component {
   state = {
@@ -30,10 +28,6 @@ class App extends React.Component {
   componentDidMount() {
     this.removeListener = firebase.auth().onAuthStateChanged((user) => {
       if (user) {
-        // get token from firebase
-        user.getIdToken()
-        // save the token to the session storage
-          .then((token) => sessionStorage.setItem('token', token));
         this.setState({ authed: true });
       } else {
         this.setState({ authed: false });
@@ -49,22 +43,46 @@ class App extends React.Component {
     const { authed } = this.state;
 
     return (
-      <div className="App">
+      <div className='App'>
         <BrowserRouter>
           <React.Fragment>
             <MyNavbar authed={authed} />
-            <div className="container d-flex justify-content-center">
+            <div className='container d-flex justify-content-center'>
               <Switch>
                 <Route path='/login' component={Login} authed={authed} />
                 <Route path='/register' component={Register} authed={authed} />
                 <Route path='/home' component={Home} authed={authed} />
-                <Route path='/employees' component={Employees} authed={authed} />
+                <Route
+                  path='/employees'
+                  component={Employees}
+                  authed={authed}
+                />
                 <Route path='/machines' component={Machines} authed={authed} />
-                <Route path='/machineForm/:machineName/:machineId' component={MachineForm} authed={authed} />
-                <Route path='/machine/history/:employeeId/:machineId/:machineAssignmentId' component={SingleMachineHistoryPage} authed={authed} />
-                <Route path='/machine/schedule/:employeeId/:machineId' component={SingleMachineSchedulePage} authed={authed} />
-                <Route path='/schedule/:employeeId' component={EmployeeSchedule} authed={authed} />
-                <Route path='/history/:employeeId' component={EmployeeHistory} authed={authed} />
+                <Route
+                  path='/machineForm/:machineName/:machineId'
+                  component={MachineForm}
+                  authed={authed}
+                />
+                <Route
+                  path='/machine/history/:employeeId/:machineId/:machineAssignmentId'
+                  component={SingleMachineHistoryPage}
+                  authed={authed}
+                />
+                <Route
+                  path='/machine/schedule/:employeeId/:machineId'
+                  component={SingleMachineSchedulePage}
+                  authed={authed}
+                />
+                <Route
+                  path='/schedule/:employeeId'
+                  component={EmployeeSchedule}
+                  authed={authed}
+                />
+                <Route
+                  path='/history/:employeeId'
+                  component={EmployeeHistory}
+                  authed={authed}
+                />
                 <Redirect from='*' to='/home' />
               </Switch>
             </div>
