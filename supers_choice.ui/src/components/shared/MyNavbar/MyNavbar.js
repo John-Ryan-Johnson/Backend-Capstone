@@ -1,6 +1,6 @@
 import React from 'react';
 import './MyNavbar.scss';
-import { NavLink as RRNavLink } from 'react-router-dom';
+import { NavLink as RRNavLink, withRouter } from 'react-router-dom';
 import {
   Collapse,
   Button,
@@ -15,6 +15,7 @@ import PropTypes from 'prop-types';
 import firebase from 'firebase/app';
 import 'firebase/auth';
 import employeesData from '../../../helpers/data/employeesData';
+import authData from '../../../helpers/data/authData';
 
 
 
@@ -34,9 +35,15 @@ class MyNavbar extends React.Component {
   }
 
   logOut = (e) => {
+    const { user } = this.state;
     e.preventDefault();
-    sessionStorage.removeItem('token');
-    firebase.auth().signOut()
+    authData.logoutUser(user)
+    .then(() => {
+      this.props.history.push('/home');
+    })
+    .catch((error) => {
+      console.error('there was an error logging out', error)
+    });
   }
 
   getUser =() => {
@@ -68,9 +75,9 @@ class MyNavbar extends React.Component {
 
   render() {
     const { isOpen, isSupervisor, employeeId } = this.state;
-    const { authed } = this.props;
 
     const authedNavBar = () => {
+      const { authed } = this.props;
       if (authed && !isSupervisor) {
         return (
           <Nav className='ml-auto' navbar>
@@ -140,4 +147,4 @@ class MyNavbar extends React.Component {
 
 
 
-export default MyNavbar;
+export default withRouter(MyNavbar);

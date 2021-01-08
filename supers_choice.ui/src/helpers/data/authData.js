@@ -14,19 +14,13 @@ axios.interceptors.request.use(
     }
 
     return request;
-  },
-  function (err) {
-    return Promise.reject(err);
-  }
-);
+}, (err) => Promise.reject(err));
 
 const registerUser = (user) => {
   //sub out whatever auth method firebase provides that you want to use.
-  return firebase
-    .auth()
-    .createUserWithEmailAndPassword(user.email, user.password)
+  return firebase.auth().createUserWithEmailAndPassword(user.email, user.password)
     .then((cred) => {
-      //get email from firebase
+      //get email and other user data from firebase
       const userInfo = {
         firebaseUid: firebase.auth().currentUser.uid,
         email: user.email,
@@ -36,8 +30,7 @@ const registerUser = (user) => {
       };
 
       //get token from firebase
-      cred.user
-        .getIdToken()
+      return cred.user.getIdToken()
         //save the token to the session storage
         .then((token) => sessionStorage.setItem('token', token))
 
@@ -46,22 +39,22 @@ const registerUser = (user) => {
     });
 };
 
-const loginUser = (user) => {
-  //sub out whatever auth method firebase provides that you want to use.
-  return firebase
-    .auth()
-    .signInWithEmailAndPassword(user.email, user.password)
-    .then((cred) => {
-      //get token from firebase
-      cred.user
-        .getIdToken()
-        //save the token to the session storage
-        .then((token) => sessionStorage.setItem('token', token));
-    });
-};
+//sub out whatever auth method firebase provides that you want to use.
+const loginUser = (user) => firebase.auth().signInWithEmailAndPassword(user.email, user.password)
+  .then((cred) => {
+    // get token from firebase
+    cred.user.getIdToken()
+      // save the token to the session storage
+      .then((token) => sessionStorage.setItem('token', token));
+  });
+
+  const logoutUser = () => {
+    sessionStorage.removeItem('token');
+    return firebase.auth().signOut();
+  };
 
 const getUid = () => {
   return firebase.auth().currentUser.uid;
 };
 
-export default { getUid, loginUser, registerUser };
+export default { getUid, loginUser, registerUser, logoutUser };
