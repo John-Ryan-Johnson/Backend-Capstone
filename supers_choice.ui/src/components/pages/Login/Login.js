@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import authRequests from '../../../helpers/data/authData';
+import authData from '../../../helpers/data/authData';
 
 
 class Login extends React.Component {
@@ -15,7 +15,7 @@ class Login extends React.Component {
   loginClickEvent = (e) => {
     const { user } = this.state;
     e.preventDefault();
-    authRequests.loginUser(user)
+    authData.loginUser(user)
       .then(() => {
         this.props.history.push('/home');
       })
@@ -24,7 +24,6 @@ class Login extends React.Component {
         this.props.history.push('/register');
       });
   };
-
 
   emailChange = (e) => {
     const tempUser = { ...this.state.user };
