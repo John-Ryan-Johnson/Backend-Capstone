@@ -30,6 +30,9 @@ Super's Choice was created as an internal company application for employee manag
 ### Single Machine Schedule Page
 ![Supers-Choice-Single-Machine-Schedule-Page](https://user-images.githubusercontent.com/51214463/104250651-a26c3d80-5433-11eb-8d85-d09f6e88b4f6.PNG)
 
+### Supervisor Logged In Page
+![Supers-Choice-Supervisor-Logged-In](https://user-images.githubusercontent.com/51214463/104251513-836eab00-5435-11eb-9332-3e8dd86f1688.PNG)
+
 ## Tools & Technologies
 * React - JSX
 * React Router - Links
