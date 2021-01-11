@@ -23,6 +23,7 @@ Super's Choice was created as an internal company application for employee manag
 * Bootstrap - Flexbox(element sizing and placement)
 * Axios - calls to APIs
 * C#
+* Dapper - micro ORM
 * ASP.NET Core
 * SQL - database
 * SSMS
