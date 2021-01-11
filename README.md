@@ -27,6 +27,9 @@ Super's Choice was created as an internal company application for employee manag
 ### Employee Schedule Page
 ![Supers-Choice-Employee-Schedule Page](https://user-images.githubusercontent.com/51214463/104250450-45708780-5433-11eb-99a4-01e729a084b9.PNG)
 
+### Single Machine Schedule Page
+![Supers-Choice-Single-Machine-Schedule-Page](https://user-images.githubusercontent.com/51214463/104250651-a26c3d80-5433-11eb-8d85-d09f6e88b4f6.PNG)
+
 ## Tools & Technologies
 * React - JSX
 * React Router - Links
