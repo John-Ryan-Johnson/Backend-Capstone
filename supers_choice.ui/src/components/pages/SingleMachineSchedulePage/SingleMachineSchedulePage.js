@@ -11,8 +11,8 @@ class SingleMachineSchedulePage extends React.Component {
     downtimeCodes: [],
     machineId: this.props.match.params.machineId * 1,
     notes: '',
-    runtime: 0,
-    downtime: 0,
+    runtime: 0.00,
+    downtime: 0.00,
     downtimeCodeId: 1,
     machineAssignmentId: 0,
     employeeId: this.props.match.params.employeeId * 1,
@@ -134,7 +134,7 @@ class SingleMachineSchedulePage extends React.Component {
                 type='number'
                 name='runtime'
                 id='runtime'
-                placeholder='0.00'
+                placeholder= '0.00'
                 value={runtime}
                 onChange={this.runtimeChange}
                 step='0.25'
@@ -154,7 +154,7 @@ class SingleMachineSchedulePage extends React.Component {
               />
             </FormGroup>
             <FormGroup>
-              <Label for='codes'>Select Multiple</Label>
+              <Label for='codes'>Select Reason For Downtime</Label>
               <Input
                 type='select'
                 name='codes'
