@@ -9,8 +9,8 @@ Super's Choice was created as an internal company application for employee manag
 
 ## Tools & Technologies
 * React - JSX
-* React Router - component paths
-* Reactstrap - NavLinks, Buttons, Navabar, forms
+* React Router - Links
+* Reactstrap - NavLinks, Buttons, Navbar, forms
 * JavaScript - ES6 modules
 * Moment.js - styling of Dates
 * Moqups - wireframes
