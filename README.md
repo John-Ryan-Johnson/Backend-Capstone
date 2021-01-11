@@ -15,6 +15,9 @@ Super's Choice was created as an internal company application for employee manag
 ### Log In Page
 ![Supers-Choice-LogIn-Page](https://user-images.githubusercontent.com/51214463/104249625-6f28af00-5431-11eb-96d0-a4876e412c2d.PNG)
 
+### Employee Logged In Page
+![Supers-Choice-Employee-Logged-In](https://user-images.githubusercontent.com/51214463/104249844-d9415400-5431-11eb-96d5-cd4759059164.PNG)
+
 ## Tools & Technologies
 * React - JSX
 * React Router - Links
