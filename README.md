@@ -39,6 +39,9 @@ Super's Choice was created as an internal company application for employee manag
 ### Machines Page
 ![Supers-Choice-Machines-Page](https://user-images.githubusercontent.com/51214463/104251792-21627580-5436-11eb-8b3e-c94b057c9bf4.PNG)
 
+### Machine Form Page
+![Supers-Choice-Machine-Form-Page](https://user-images.githubusercontent.com/51214463/104251917-6c7c8880-5436-11eb-8214-89748a653638.PNG)
+
 ## Tools & Technologies
 * React - JSX
 * React Router - Links
