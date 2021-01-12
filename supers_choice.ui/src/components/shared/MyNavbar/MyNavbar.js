@@ -48,8 +48,6 @@ class MyNavbar extends React.Component {
 
   getUser =() => {
      firebase.auth().onAuthStateChanged((user) => {
-      const uid = user.uid;
-      console.error(uid);
       user.getIdToken()
         // save the token to the session storage
           .then((token) => sessionStorage.setItem('token', token))
@@ -66,10 +64,6 @@ class MyNavbar extends React.Component {
 }
 
   componentDidMount() {
-    this.getUser();
-  }
-
-  componentWillUnmount() {
     this.getUser();
   }
 
